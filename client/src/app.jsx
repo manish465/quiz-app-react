@@ -11,19 +11,19 @@ import { ThemeProvider, createMuiTheme, CssBaseline } from "@material-ui/core";
 
 const darkTheme = createMuiTheme({
     palette: {
-        background: { default: "#214252" },
-        primary: { main: "#f05454" },
-        secondary: { main: "#af2d2d" },
-        text: { primary: "#ce6262" },
+        background: { default: "#222831" },
+        primary: { main: "#393e46" },
+        secondary: { main: "#ffd369" },
+        text: { primary: "#eeeeee" },
     },
 });
 
 const lightTheme = createMuiTheme({
     palette: {
-        background: { default: "#16a596" },
-        primary: { main: "#898b8a" },
-        secondary: { main: "#fae0df" },
-        text: { primary: "#f6f5f1" },
+        background: { default: "#eeeeee" },
+        primary: { main: "#222831" },
+        secondary: { main: "#4f8a8b" },
+        text: { primary: "#fbd46d" },
     },
 });
 
