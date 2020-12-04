@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Header = ({ darkMode, setDarkMode }) => {
+const Header = ({ userName, setUserName, darkMode, setDarkMode }) => {
     const classes = useStyles();
     return (
         <AppBar position='static'>
@@ -39,9 +39,15 @@ const Header = ({ darkMode, setDarkMode }) => {
                         to='/'
                         item>
                         <Button>
-                            <Typography variant='h4' color='secondary'>
-                                QUIZ APP
-                            </Typography>
+                            {userName === "" ? (
+                                <Typography variant='h4' color='secondary'>
+                                    QUIZ APP
+                                </Typography>
+                            ) : (
+                                <Typography variant='h4' color='secondary'>
+                                    {userName}
+                                </Typography>
+                            )}
                         </Button>
                     </Grid>
                     <Grid item>
@@ -56,14 +62,24 @@ const Header = ({ darkMode, setDarkMode }) => {
                                 <NightsStayIcon />
                             )}
                         </IconButton>
-                        <Button
-                            className={classes.headerHomeLoginButton}
-                            component={Link}
-                            to='/login'
-                            color='secondary'
-                            variant='contained'>
-                            <Typography color='primary'>Login</Typography>
-                        </Button>
+                        {userName === "" ? (
+                            <Button
+                                className={classes.headerHomeLoginButton}
+                                component={Link}
+                                to='/login'
+                                color='secondary'
+                                variant='contained'>
+                                <Typography color='primary'>Login</Typography>
+                            </Button>
+                        ) : (
+                            <Button
+                                className={classes.headerHomeLoginButton}
+                                onClick={() => setUserName("")}
+                                color='secondary'
+                                variant='contained'>
+                                <Typography color='primary'>Log Out</Typography>
+                            </Button>
+                        )}
                     </Grid>
                 </Grid>
             </Toolbar>

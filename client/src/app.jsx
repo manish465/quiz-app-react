@@ -16,6 +16,11 @@ const darkTheme = createMuiTheme({
         secondary: { main: "#ffd369" },
         text: { primary: "#eeeeee" },
     },
+    typography: {
+        button: {
+            textTransform: "none",
+        },
+    },
 });
 
 const lightTheme = createMuiTheme({
@@ -25,20 +30,31 @@ const lightTheme = createMuiTheme({
         secondary: { main: "#4f8a8b" },
         text: { primary: "#fbd46d" },
     },
+    typography: {
+        button: {
+            textTransform: "none",
+        },
+    },
 });
 
 const App = () => {
     const [darkMode, setDarkMode] = useState(true);
+    const [userName, setUserName] = useState("");
 
     return (
         <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
             <CssBaseline />
-            <Header darkMode={darkMode} setDarkMode={setDarkMode} />
+            <Header
+                userName={userName}
+                setUserName={setUserName}
+                darkMode={darkMode}
+                setDarkMode={setDarkMode}
+            />
             <Route exact path='/'>
                 <HomePage />
             </Route>
             <Route exact path='/login'>
-                <LoginPage />
+                <LoginPage userName={userName} setUserName={setUserName} />
             </Route>
         </ThemeProvider>
     );
