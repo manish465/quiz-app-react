@@ -5,6 +5,7 @@ import { Route } from "react-router-dom";
 import Header from "./componets/Header";
 
 import HomePage from "./pages/HomePage";
+import LoginPage from "./pages/LoginPage";
 
 import { ThemeProvider, createMuiTheme, CssBaseline } from "@material-ui/core";
 
@@ -35,6 +36,9 @@ const App = () => {
             <Header darkMode={darkMode} setDarkMode={setDarkMode} />
             <Route exact path='/'>
                 <HomePage />
+            </Route>
+            <Route exact path='/login'>
+                <LoginPage />
             </Route>
         </ThemeProvider>
     );

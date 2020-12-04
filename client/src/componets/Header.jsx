@@ -22,6 +22,9 @@ const useStyles = makeStyles((theme) => ({
     headerThemeButton: {
         marginRight: "10px",
     },
+    headerHomeLoginButton: {
+        textDecoration: "none",
+    },
 }));
 
 const Header = ({ darkMode, setDarkMode }) => {
@@ -53,7 +56,12 @@ const Header = ({ darkMode, setDarkMode }) => {
                                 <NightsStayIcon />
                             )}
                         </IconButton>
-                        <Button color='secondary' variant='contained'>
+                        <Button
+                            className={classes.headerHomeLoginButton}
+                            component={Link}
+                            to='/login'
+                            color='secondary'
+                            variant='contained'>
                             <Typography color='primary'>Login</Typography>
                         </Button>
                     </Grid>
