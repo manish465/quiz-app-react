@@ -6,6 +6,7 @@ import {
     Typography,
     Button,
     Grid,
+    Paper,
     IconButton,
     makeStyles,
 } from "@material-ui/core";
@@ -30,6 +31,15 @@ const useStyles = makeStyles((theme) => ({
     headerAppBar: {
         background: "transparent",
         boxShadow: "none",
+        zIndex: "4",
+    },
+    headerMenuPage: {
+        zIndex: "2",
+        width: "100%",
+        height: "100vh",
+        position: "fixed",
+        top: "0",
+        left: "0",
     },
 }));
 
@@ -43,37 +53,55 @@ const Header = ({
 }) => {
     const classes = useStyles();
     return (
-        <AppBar className={classes.headerAppBar} position='static'>
-            <Toolbar>
-                <Grid container justify='space-between'>
-                    <Grid
-                        className={classes.headerHomeButton}
-                        component={Link}
-                        to='/'
-                        item>
-                        <Button>
-                            {userName === "" ? (
-                                <Typography variant='h4' color='secondary'>
-                                    QUIZ APP
-                                </Typography>
-                            ) : (
-                                <Typography variant='h4' color='secondary'>
-                                    {userName}
-                                </Typography>
-                            )}
-                        </Button>
+        <>
+            <AppBar className={classes.headerAppBar} position='absolute'>
+                <Toolbar>
+                    <Grid container justify='space-between'>
+                        <Grid
+                            className={classes.headerHomeButton}
+                            component={Link}
+                            to='/'
+                            item>
+                            <motion.div
+                                whileHover={{ scale: 1.2 }}
+                                whileTap={{ rotateX: 40 }}>
+                                <Button>
+                                    {userName === "" ? (
+                                        <Typography
+                                            variant='h4'
+                                            color='secondary'>
+                                            QUIZ APP
+                                        </Typography>
+                                    ) : (
+                                        <Typography
+                                            variant='h4'
+                                            color='secondary'>
+                                            {userName}
+                                        </Typography>
+                                    )}
+                                </Button>
+                            </motion.div>
+                        </Grid>
+                        <Grid item>
+                            <motion.div
+                                whileTap={{
+                                    scale: 2,
+                                    rotate: 180,
+                                    opacity: 0,
+                                }}>
+                                <IconButton
+                                    onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                                    {isMenuOpen ? <CloseIcon /> : <MenuIcon />}
+                                </IconButton>
+                            </motion.div>
+                        </Grid>
                     </Grid>
-                    <Grid item>
-                        <motion.div whileTap={{ scale: 2, rotate: 180 }}>
-                            <IconButton
-                                onClick={() => setIsMenuOpen(!isMenuOpen)}>
-                                {isMenuOpen ? <CloseIcon /> : <MenuIcon />}
-                            </IconButton>
-                        </motion.div>
-                    </Grid>
-                </Grid>
-            </Toolbar>
-        </AppBar>
+                </Toolbar>
+            </AppBar>
+            {isMenuOpen ? (
+                <Paper className={classes.headerMenuPage}>csbj</Paper>
+            ) : null}
+        </>
     );
 };
 
