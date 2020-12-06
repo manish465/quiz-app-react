@@ -11,7 +11,7 @@ import {
     makeStyles,
 } from "@material-ui/core";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 import { Link } from "react-router-dom";
 
@@ -31,15 +31,16 @@ const useStyles = makeStyles((theme) => ({
     headerAppBar: {
         background: "transparent",
         boxShadow: "none",
-        zIndex: "4",
+        zIndex: theme.zIndex.appBar,
     },
     headerMenuPage: {
-        zIndex: "2",
+        zIndex: theme.zIndex.drawer,
         width: "100%",
         height: "100vh",
-        position: "fixed",
+        position: "absolute",
         top: "0",
         left: "0",
+        background: theme.palette.primary.main,
     },
 }));
 
@@ -90,6 +91,7 @@ const Header = ({
                                     opacity: 0,
                                 }}>
                                 <IconButton
+                                    color='secondary'
                                     onClick={() => setIsMenuOpen(!isMenuOpen)}>
                                     {isMenuOpen ? <CloseIcon /> : <MenuIcon />}
                                 </IconButton>
@@ -98,9 +100,19 @@ const Header = ({
                     </Grid>
                 </Toolbar>
             </AppBar>
-            {isMenuOpen ? (
-                <Paper className={classes.headerMenuPage}>csbj</Paper>
-            ) : null}
+            <AnimatePresence>
+                {isMenuOpen ? (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.5 }}>
+                        <Paper className={classes.headerMenuPage}>
+                            menu page
+                        </Paper>
+                    </motion.div>
+                ) : null}
+            </AnimatePresence>
         </>
     );
 };

@@ -21,6 +21,7 @@ const darkTheme = createMuiTheme({
             textTransform: "none",
         },
     },
+    zIndex: { drawer: 1070 },
 });
 
 const lightTheme = createMuiTheme({
@@ -38,7 +39,7 @@ const lightTheme = createMuiTheme({
 });
 
 const App = () => {
-    const [darkMode, setDarkMode] = useState(false);
+    const [darkMode, setDarkMode] = useState(true);
     const [userName, setUserName] = useState("");
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
