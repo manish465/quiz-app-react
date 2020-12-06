@@ -8,7 +8,6 @@ import {
     Typography,
     Button,
     Grid,
-    Paper,
     IconButton,
     makeStyles,
 } from "@material-ui/core";
@@ -24,7 +23,6 @@ const useStyles = makeStyles((theme) => ({
     headerHomeButton: {
         textDecoration: "none",
     },
-
     headerAppBar: {
         background: "transparent",
         boxShadow: "none",
@@ -32,14 +30,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Header = ({
-    userName,
-    setUserName,
-    darkMode,
-    setDarkMode,
-    isMenuOpen,
-    setIsMenuOpen,
-}) => {
+const Header = ({ userName, isMenuOpen, setIsMenuOpen }) => {
     const classes = useStyles();
     return (
         <>
