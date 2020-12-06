@@ -36,6 +36,7 @@ const lightTheme = createMuiTheme({
             textTransform: "none",
         },
     },
+    zIndex: { drawer: 1070 },
 });
 
 const App = () => {
