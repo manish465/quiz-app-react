@@ -24,25 +24,11 @@ const useStyles = makeStyles((theme) => ({
     headerHomeButton: {
         textDecoration: "none",
     },
-    headerThemeButton: {
-        marginRight: "10px",
-    },
-    headerHomeLoginButton: {
-        textDecoration: "none",
-    },
+
     headerAppBar: {
         background: "transparent",
         boxShadow: "none",
         zIndex: theme.zIndex.appBar,
-    },
-    headerMenuPage: {
-        zIndex: theme.zIndex.drawer,
-        width: "100%",
-        height: "100vh",
-        position: "absolute",
-        top: "0",
-        left: "0",
-        background: theme.palette.primary.main,
     },
 }));
 

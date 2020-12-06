@@ -22,13 +22,11 @@ const HeaderMenu = () => {
     return (
         <motion.div
             initial={{ y: -800 }}
-            animate={{ y: [-200, 0], skewY: [0, 4, 0] }}
-            exit={{ y: -800, skewY: [0, 4, 0] }}
+            animate={{ y: [-200, 0], skewY: [6, 0] }}
+            exit={{ y: -800, skewY: 6 }}
             transition={{
-                ease: "easeOut",
+                ease: "anticipate",
                 duration: 0.5,
-                damping: 10,
-                delay: 0.1,
             }}>
             <Paper className={classes.headerMenuPage}>menu page</Paper>
         </motion.div>
