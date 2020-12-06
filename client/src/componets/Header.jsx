@@ -1,5 +1,7 @@
 import React from "react";
 
+import HeaderMenu from "./HeaderMenu";
+
 import {
     AppBar,
     Toolbar,
@@ -58,15 +60,14 @@ const Header = ({
             <AppBar className={classes.headerAppBar} position='absolute'>
                 <Toolbar>
                     <Grid container justify='space-between'>
-                        <Grid
-                            className={classes.headerHomeButton}
-                            component={Link}
-                            to='/'
-                            item>
+                        <Grid className={classes.headerHomeButton} item>
                             <motion.div
                                 whileHover={{ scale: 1.2 }}
                                 whileTap={{ rotateX: 40 }}>
-                                <Button>
+                                <Button
+                                    component={Link}
+                                    to='/'
+                                    onClick={() => setIsMenuOpen(false)}>
                                     {userName === "" ? (
                                         <Typography
                                             variant='h4'
@@ -101,17 +102,7 @@ const Header = ({
                 </Toolbar>
             </AppBar>
             <AnimatePresence>
-                {isMenuOpen ? (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.5 }}>
-                        <Paper className={classes.headerMenuPage}>
-                            menu page
-                        </Paper>
-                    </motion.div>
-                ) : null}
+                {isMenuOpen ? <HeaderMenu /> : null}
             </AnimatePresence>
         </>
     );
