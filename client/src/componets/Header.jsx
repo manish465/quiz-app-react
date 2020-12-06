@@ -10,10 +10,12 @@ import {
     makeStyles,
 } from "@material-ui/core";
 
+import { motion } from "framer-motion";
+
 import { Link } from "react-router-dom";
 
-import Brightness4Icon from "@material-ui/icons/Brightness4";
-import NightsStayIcon from "@material-ui/icons/NightsStay";
+import MenuIcon from "@material-ui/icons/Menu";
+import CloseIcon from "@material-ui/icons/Close";
 
 const useStyles = makeStyles((theme) => ({
     headerHomeButton: {
@@ -25,12 +27,23 @@ const useStyles = makeStyles((theme) => ({
     headerHomeLoginButton: {
         textDecoration: "none",
     },
+    headerAppBar: {
+        background: "transparent",
+        boxShadow: "none",
+    },
 }));
 
-const Header = ({ userName, setUserName, darkMode, setDarkMode }) => {
+const Header = ({
+    userName,
+    setUserName,
+    darkMode,
+    setDarkMode,
+    isMenuOpen,
+    setIsMenuOpen,
+}) => {
     const classes = useStyles();
     return (
-        <AppBar position='static'>
+        <AppBar className={classes.headerAppBar} position='static'>
             <Toolbar>
                 <Grid container justify='space-between'>
                     <Grid
@@ -51,35 +64,12 @@ const Header = ({ userName, setUserName, darkMode, setDarkMode }) => {
                         </Button>
                     </Grid>
                     <Grid item>
-                        <IconButton
-                            className={classes.headerThemeButton}
-                            onClick={() => setDarkMode(!darkMode)}
-                            size='medium'
-                            color='secondary'>
-                            {darkMode ? (
-                                <Brightness4Icon />
-                            ) : (
-                                <NightsStayIcon />
-                            )}
-                        </IconButton>
-                        {userName === "" ? (
-                            <Button
-                                className={classes.headerHomeLoginButton}
-                                component={Link}
-                                to='/login'
-                                color='secondary'
-                                variant='contained'>
-                                <Typography color='primary'>Login</Typography>
-                            </Button>
-                        ) : (
-                            <Button
-                                className={classes.headerHomeLoginButton}
-                                onClick={() => setUserName("")}
-                                color='secondary'
-                                variant='contained'>
-                                <Typography color='primary'>Log Out</Typography>
-                            </Button>
-                        )}
+                        <motion.div whileTap={{ scale: 2, rotate: 180 }}>
+                            <IconButton
+                                onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                                {isMenuOpen ? <CloseIcon /> : <MenuIcon />}
+                            </IconButton>
+                        </motion.div>
                     </Grid>
                 </Grid>
             </Toolbar>

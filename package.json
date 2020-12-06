@@ -1,0 +1,11 @@
+{
+    "name": "quiz_app",
+    "version": "1.0.0",
+    "main": "index.js",
+    "repository": "https://github.com/manish465/quiz-app-react.git",
+    "author": "manish465 <ms5978307@gmail.com>",
+    "license": "MIT",
+    "scripts": {
+        "start": "cd client && yarn start"
+    }
+}
