@@ -12,7 +12,9 @@ import { lightTheme, darkTheme } from "./Stylings/themes";
 import { ThemeProvider, CssBaseline } from "@material-ui/core";
 
 const App = () => {
-    const [darkMode, setDarkMode] = useState(false);
+    const randomTheme = Boolean(Math.round(Math.random()));
+
+    const [darkMode, setDarkMode] = useState(randomTheme);
     const [userName, setUserName] = useState("");
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
