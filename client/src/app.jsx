@@ -7,40 +7,12 @@ import Header from "./Componets/Header";
 import HomePage from "./Pages/HomePage";
 import LoginPage from "./Pages/LoginPage";
 
-import { ThemeProvider, createMuiTheme, CssBaseline } from "@material-ui/core";
+import { lightTheme, darkTheme } from "./Themes/themes";
 
-const darkTheme = createMuiTheme({
-    palette: {
-        background: { default: "#222831" },
-        primary: { main: "#393e46" },
-        secondary: { main: "#00adb5" },
-        text: { primary: "#eeeeee" },
-    },
-    typography: {
-        button: {
-            textTransform: "none",
-        },
-    },
-    zIndex: { drawer: 1070 },
-});
-
-const lightTheme = createMuiTheme({
-    palette: {
-        background: { default: "#f0f5f9" },
-        primary: { main: "#c9d6df" },
-        secondary: { main: "#52616b" },
-        text: { primary: "#1e2022" },
-    },
-    typography: {
-        button: {
-            textTransform: "none",
-        },
-    },
-    zIndex: { drawer: 1070 },
-});
+import { ThemeProvider, CssBaseline } from "@material-ui/core";
 
 const App = () => {
-    const [darkMode, setDarkMode] = useState(true);
+    const [darkMode, setDarkMode] = useState(false);
     const [userName, setUserName] = useState("");
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
