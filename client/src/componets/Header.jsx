@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Header = ({
     userName,
+    setUserName,
     isMenuOpen,
     setIsMenuOpen,
     darkMode,
@@ -29,6 +30,7 @@ const Header = ({
                 <Toolbar>
                     <AppBarContent
                         userName={userName}
+                        setUserName={setUserName}
                         isMenuOpen={isMenuOpen}
                         setIsMenuOpen={setIsMenuOpen}
                         darkMode={darkMode}

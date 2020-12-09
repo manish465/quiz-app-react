@@ -29,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
 
 const AppBarContent = ({
     userName,
+    setUserName,
     isMenuOpen,
     setIsMenuOpen,
     darkMode,
@@ -52,13 +53,13 @@ const AppBarContent = ({
                             </Typography>
                         ) : (
                             <Typography variant='h4' color='secondary'>
-                                {userName}
+                                Hello there, {userName}
                             </Typography>
                         )}
                     </Button>
                 </motion.div>
             </Grid>
-            <Grid item>
+            <Grid className={classes.headerRightGrid} item>
                 <motion.div
                     className={classes.headerMotion}
                     whileTap={{
@@ -87,6 +88,24 @@ const AppBarContent = ({
                         {isMenuOpen ? <CloseIcon /> : <MenuIcon />}
                     </IconButton>
                 </motion.div>
+                {userName === "" ? (
+                    <Button
+                        component={Link}
+                        to='/login'
+                        color='secondary'
+                        variant='contained'>
+                        Login
+                    </Button>
+                ) : (
+                    <Button
+                        component={Link}
+                        to='/'
+                        onClick={() => setUserName("")}
+                        color='secondary'
+                        variant='contained'>
+                        Logout
+                    </Button>
+                )}
             </Grid>
         </Grid>
     );
