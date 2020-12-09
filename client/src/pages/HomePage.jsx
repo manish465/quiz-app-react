@@ -8,10 +8,10 @@ import SvgBanner from "../Componets/SvgBanner";
 
 const useStyles = makeStyles((theme) => ({
     homePageMainGrid: {
-        padding: "30px",
+        padding: "10px",
     },
     homePageHeadTypography: {
-        marginTop: "100px",
+        marginTop: "150px",
         marginLeft: "30px",
     },
 }));
