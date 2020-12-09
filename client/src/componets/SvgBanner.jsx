@@ -10,11 +10,7 @@ const useStyles = makeStyles((theme) => ({
         width: "500px",
         position: "absolute",
         transform: "translateX(-500px)",
-    },
-    homePageSvgBanner: {
-        width: "500px",
-        position: "absolute",
-        transform: "translateX(-500px)",
+        zIndex: -1,
     },
 }));
 
@@ -24,7 +20,7 @@ const SvgBanner = () => {
     return (
         <div>
             <SVGBase className={classes.homePageSvgBase} />
-            <HomeBanner className={classes.homePageSvgBanner} />
+            <HomeBanner className={classes.homePageSvgBase} />
         </div>
     );
 };
