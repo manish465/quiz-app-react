@@ -1,38 +1,17 @@
 import React from "react";
 
 import HeaderMenu from "./HeaderMenu";
+import AppBarContent from "./AppBarContent";
 
-import {
-    AppBar,
-    Toolbar,
-    Typography,
-    Button,
-    Grid,
-    IconButton,
-    makeStyles,
-} from "@material-ui/core";
+import { AppBar, Toolbar, makeStyles } from "@material-ui/core";
 
-import { motion, AnimatePresence } from "framer-motion";
-
-import { Link } from "react-router-dom";
-
-import MenuIcon from "@material-ui/icons/Menu";
-import CloseIcon from "@material-ui/icons/Close";
-
-import Brightness6Icon from "@material-ui/icons/Brightness6";
-import NightsStayIcon from "@material-ui/icons/NightsStay";
+import { AnimatePresence } from "framer-motion";
 
 const useStyles = makeStyles((theme) => ({
-    headerHomeButton: {
-        textDecoration: "none",
-    },
     headerAppBar: {
         background: "transparent",
         boxShadow: "none",
         zIndex: theme.zIndex.appBar,
-    },
-    headerMotion: {
-        display: "inline-block",
     },
 }));
 
@@ -48,67 +27,13 @@ const Header = ({
         <>
             <AppBar className={classes.headerAppBar} position='absolute'>
                 <Toolbar>
-                    <Grid container justify='space-between'>
-                        <Grid className={classes.headerHomeButton} item>
-                            <motion.div
-                                className={classes.headerMotion}
-                                whileHover={{ scale: 1.2 }}
-                                whileTap={{ rotateX: 40 }}>
-                                <Button
-                                    component={Link}
-                                    to='/'
-                                    onClick={() => setIsMenuOpen(false)}>
-                                    {userName === "" ? (
-                                        <Typography
-                                            variant='h4'
-                                            color='secondary'>
-                                            QUIZ APP
-                                        </Typography>
-                                    ) : (
-                                        <Typography
-                                            variant='h4'
-                                            color='secondary'>
-                                            {userName}
-                                        </Typography>
-                                    )}
-                                </Button>
-                            </motion.div>
-                        </Grid>
-                        <Grid item>
-                            <motion.div
-                                className={classes.headerMotion}
-                                whileTap={{
-                                    scale: 1.1,
-                                    rotate: 180,
-                                    opacity: 0,
-                                }}
-                                whileHover={{ rotateX: 180 }}>
-                                <IconButton
-                                    color='secondary'
-                                    onClick={() => setDarkMode(!darkMode)}>
-                                    {darkMode ? (
-                                        <Brightness6Icon />
-                                    ) : (
-                                        <NightsStayIcon />
-                                    )}
-                                </IconButton>
-                            </motion.div>
-                            <motion.div
-                                className={classes.headerMotion}
-                                whileTap={{
-                                    scale: 1.1,
-                                    rotate: 180,
-                                    opacity: 0,
-                                }}
-                                whileHover={{ rotateX: 180 }}>
-                                <IconButton
-                                    color='secondary'
-                                    onClick={() => setIsMenuOpen(!isMenuOpen)}>
-                                    {isMenuOpen ? <CloseIcon /> : <MenuIcon />}
-                                </IconButton>
-                            </motion.div>
-                        </Grid>
-                    </Grid>
+                    <AppBarContent
+                        userName={userName}
+                        isMenuOpen={isMenuOpen}
+                        setIsMenuOpen={setIsMenuOpen}
+                        darkMode={darkMode}
+                        setDarkMode={setDarkMode}
+                    />
                 </Toolbar>
             </AppBar>
             <AnimatePresence>
