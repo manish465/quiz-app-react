@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
     headerAppBar: {
         background: "transparent",
         boxShadow: "none",
-        zIndex: theme.zIndex.appBar,
+        zIndex: 1300,
     },
 }));
 

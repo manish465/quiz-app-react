@@ -6,7 +6,6 @@ const theme = createMuiTheme({
             textTransform: "none",
         },
     },
-    zIndex: { drawer: 1070 },
 });
 
 const darkTheme = createMuiTheme({

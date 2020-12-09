@@ -6,13 +6,11 @@ import { motion } from "framer-motion";
 
 const useStyles = makeStyles((theme) => ({
     headerMenuPage: {
-        zIndex: theme.zIndex.drawer,
+        zIndex: 1200,
         width: "100%",
         height: "100vh",
-        position: "absolute",
-        top: "0",
-        left: "0",
         background: theme.palette.primary.main,
+        margin: 0,
     },
 }));
 
