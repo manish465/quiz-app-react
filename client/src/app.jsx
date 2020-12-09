@@ -7,7 +7,7 @@ import Header from "./Componets/Header";
 import HomePage from "./Pages/HomePage";
 import LoginPage from "./Pages/LoginPage";
 
-import { lightTheme, darkTheme } from "./Themes/themes";
+import { lightTheme, darkTheme } from "./Stylings/themes";
 
 import { ThemeProvider, CssBaseline } from "@material-ui/core";
 
