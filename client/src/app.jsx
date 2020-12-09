@@ -2,10 +2,10 @@ import React, { useState } from "react";
 
 import { Route } from "react-router-dom";
 
-import Header from "./componets/Header";
+import Header from "./Componets/Header";
 
-import HomePage from "./pages/HomePage";
-import LoginPage from "./pages/LoginPage";
+import HomePage from "./Pages/HomePage";
+import LoginPage from "./Pages/LoginPage";
 
 import { ThemeProvider, createMuiTheme, CssBaseline } from "@material-ui/core";
 
