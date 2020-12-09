@@ -3,6 +3,8 @@ import React from "react";
 import { ReactComponent as SVGBase } from "../Assets/blob.svg";
 import { ReactComponent as HomeBanner } from "../Assets/undraw_Questions_re_1fy7.svg";
 
+import { motion } from "framer-motion";
+
 import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -18,10 +20,12 @@ const SvgBanner = () => {
     const classes = useStyles();
 
     return (
-        <div>
+        <motion.div
+            initial={{ x: 500, opacity: 0, scale: 2 }}
+            animate={{ x: 0, opacity: 1, scale: 1 }}>
             <SVGBase className={classes.homePageSvgBase} />
             <HomeBanner className={classes.homePageSvgBase} />
-        </div>
+        </motion.div>
     );
 };
 

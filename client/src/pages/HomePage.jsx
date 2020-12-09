@@ -2,6 +2,8 @@ import React from "react";
 
 import { makeStyles, Grid, Typography } from "@material-ui/core";
 
+import { motion } from "framer-motion";
+
 import SvgBanner from "../Componets/SvgBanner";
 
 const useStyles = makeStyles((theme) => ({
@@ -22,12 +24,15 @@ const HomePage = () => {
             container
             justify='space-between'>
             <Grid item>
-                <Typography
-                    variant='h2'
+                <motion.div
+                    initial={{ y: -500, scale: 2, opacity: 0 }}
+                    animate={{ y: 0, scale: 1, opacity: 1 }}
                     className={classes.homePageHeadTypography}>
-                    A platform to create a quiz <br />
-                    and join other quizzes.
-                </Typography>
+                    <Typography variant='h2'>
+                        A platform to create a quiz <br />
+                        and join other quizzes.
+                    </Typography>
+                </motion.div>
             </Grid>
             <Grid item>
                 <SvgBanner />
