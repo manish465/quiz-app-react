@@ -29,8 +29,8 @@ const HomePage = () => {
                     animate={{ y: 0, scale: 1, opacity: 1 }}
                     className={classes.homePageHeadTypography}>
                     <Typography variant='h2'>
-                        A platform to create a quiz <br />
-                        and join other quizzes.
+                        A Platform To Create A Quiz <br />
+                        And Join Other Quizzes.
                     </Typography>
                 </motion.div>
             </Grid>
