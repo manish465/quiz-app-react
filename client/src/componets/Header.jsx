@@ -26,6 +26,9 @@ const Header = ({
     const classes = useStyles();
     return (
         <>
+            <AnimatePresence>
+                {isMenuOpen ? <HeaderMenu /> : null}
+            </AnimatePresence>
             <AppBar className={classes.headerAppBar} position='absolute'>
                 <Toolbar>
                     <AppBarContent
@@ -38,9 +41,6 @@ const Header = ({
                     />
                 </Toolbar>
             </AppBar>
-            <AnimatePresence>
-                {isMenuOpen ? <HeaderMenu /> : null}
-            </AnimatePresence>
         </>
     );
 };

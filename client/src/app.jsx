@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Route } from "react-router-dom";
+import { Route, Switch, useLocation } from "react-router-dom";
 
 import Header from "./Componets/Header";
 
@@ -18,6 +18,8 @@ const App = () => {
     const [userName, setUserName] = useState("");
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+    const location = useLocation();
+
     return (
         <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
             <CssBaseline />
@@ -29,12 +31,14 @@ const App = () => {
                 isMenuOpen={isMenuOpen}
                 setIsMenuOpen={setIsMenuOpen}
             />
-            <Route exact path='/'>
-                <HomePage />
-            </Route>
-            <Route exact path='/login'>
-                <LoginPage userName={userName} setUserName={setUserName} />
-            </Route>
+            <Switch location={location} key={location.pathname}>
+                <Route exact path='/'>
+                    <HomePage />
+                </Route>
+                <Route exact path='/login'>
+                    <LoginPage userName={userName} setUserName={setUserName} />
+                </Route>
+            </Switch>
         </ThemeProvider>
     );
 };
