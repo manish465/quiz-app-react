@@ -1,6 +1,8 @@
 import React from "react";
 
-import { Paper, makeStyles } from "@material-ui/core";
+import { Paper, makeStyles, Button, Typography } from "@material-ui/core";
+
+import { Link } from "react-router-dom";
 
 import { motion } from "framer-motion";
 
@@ -10,7 +12,15 @@ const useStyles = makeStyles((theme) => ({
         width: "100%",
         height: "100vh",
         background: theme.palette.primary.main,
-        margin: 0,
+        padding: "150px 30px",
+    },
+    headerMenuPageButtonGroup: {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "start",
+    },
+    headerMenuPageButton: {
+        marginTop: "10px ",
     },
 }));
 
@@ -18,16 +28,71 @@ const HeaderMenu = () => {
     const classes = useStyles();
 
     return (
-        <motion.div
+        <Paper
+            component={motion.div}
             initial={{ y: -800 }}
             animate={{ y: [-200, 0], skewY: [6, 0] }}
             exit={{ y: -800, skewY: 6 }}
             transition={{
                 ease: "anticipate",
                 duration: 0.5,
-            }}>
-            <Paper className={classes.headerMenuPage}>menu page</Paper>
-        </motion.div>
+            }}
+            className={classes.headerMenuPage}>
+            <div className={classes.headerMenuPageButtonGroup}>
+                <Button
+                    component={Link}
+                    to='/'
+                    className={classes.headerMenuPageButton}
+                    variant='text'>
+                    <Typography
+                        component={motion.div}
+                        whileHover={{ skewY: 4 }}
+                        whileTap={{ rotateX: 40 }}
+                        variant='h3'>
+                        CREATE
+                    </Typography>
+                </Button>
+                <Button
+                    component={Link}
+                    to='/'
+                    className={classes.headerMenuPageButton}
+                    variant='text'>
+                    <Typography
+                        component={motion.div}
+                        whileHover={{ skewY: 4 }}
+                        whileTap={{ rotateX: 40 }}
+                        variant='h3'>
+                        JOIN
+                    </Typography>
+                </Button>
+                <Button
+                    component={Link}
+                    to='/'
+                    className={classes.headerMenuPageButton}
+                    variant='text'>
+                    <Typography
+                        component={motion.div}
+                        whileHover={{ skewY: 4 }}
+                        whileTap={{ rotateX: 40 }}
+                        variant='h3'>
+                        OPTION
+                    </Typography>
+                </Button>
+                <Button
+                    component={Link}
+                    to='/'
+                    className={classes.headerMenuPageButton}
+                    variant='text'>
+                    <Typography
+                        component={motion.div}
+                        whileHover={{ skewY: 4 }}
+                        whileTap={{ rotateX: 40 }}
+                        variant='h3'>
+                        ABOUT US
+                    </Typography>
+                </Button>
+            </div>
+        </Paper>
     );
 };
 
