@@ -27,7 +27,9 @@ const Header = ({
     return (
         <>
             <AnimatePresence>
-                {isMenuOpen ? <HeaderMenu /> : null}
+                {isMenuOpen ? (
+                    <HeaderMenu setIsMenuOpen={setIsMenuOpen} />
+                ) : null}
             </AnimatePresence>
             <AppBar className={classes.headerAppBar} position='absolute'>
                 <Toolbar>

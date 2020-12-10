@@ -24,16 +24,16 @@ const HomePage = () => {
             container
             justify='space-between'>
             <Grid item>
-                <motion.div
+                <Typography
+                    component={motion.div}
                     initial={{ x: -350, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ ease: "easeOut", duration: 0.3 }}
-                    className={classes.homePageHeadTypography}>
-                    <Typography variant='h2'>
-                        A Platform To Create A Quiz <br />
-                        And Join Other Quizzes.
-                    </Typography>
-                </motion.div>
+                    className={classes.homePageHeadTypography}
+                    variant='h2'>
+                    A Platform To Create A Quiz <br />
+                    And Join Other Quizzes.
+                </Typography>
             </Grid>
             <Grid item>
                 <SvgBanner />

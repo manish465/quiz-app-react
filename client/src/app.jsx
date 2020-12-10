@@ -16,7 +16,7 @@ const App = () => {
 
     const [darkMode, setDarkMode] = useState(randomTheme);
     const [userName, setUserName] = useState("");
-    const [isMenuOpen, setIsMenuOpen] = useState(true);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const location = useLocation();
 

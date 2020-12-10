@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const HeaderMenu = () => {
+const HeaderMenu = ({ setIsMenuOpen }) => {
     const classes = useStyles();
 
     return (
@@ -43,6 +43,7 @@ const HeaderMenu = () => {
                     component={Link}
                     to='/'
                     className={classes.headerMenuPageButton}
+                    onClick={() => setIsMenuOpen(false)}
                     variant='text'>
                     <Typography
                         component={motion.div}
@@ -56,6 +57,7 @@ const HeaderMenu = () => {
                     component={Link}
                     to='/'
                     className={classes.headerMenuPageButton}
+                    onClick={() => setIsMenuOpen(false)}
                     variant='text'>
                     <Typography
                         component={motion.div}
@@ -69,6 +71,7 @@ const HeaderMenu = () => {
                     component={Link}
                     to='/'
                     className={classes.headerMenuPageButton}
+                    onClick={() => setIsMenuOpen(false)}
                     variant='text'>
                     <Typography
                         component={motion.div}
@@ -82,6 +85,7 @@ const HeaderMenu = () => {
                     component={Link}
                     to='/'
                     className={classes.headerMenuPageButton}
+                    onClick={() => setIsMenuOpen(false)}
                     variant='text'>
                     <Typography
                         component={motion.div}
