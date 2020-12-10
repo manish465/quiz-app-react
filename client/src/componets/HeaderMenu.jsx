@@ -30,7 +30,7 @@ const HeaderMenu = ({ setIsMenuOpen }) => {
     return (
         <Paper
             component={motion.div}
-            initial={{ y: -800 }}
+            initial={{ y: -800, skewY: 10 }}
             animate={{ y: [-200, 0], skewY: [6, 0] }}
             exit={{ y: -800, skewY: 6 }}
             transition={{
