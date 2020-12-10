@@ -22,7 +22,8 @@ const SvgBanner = () => {
     return (
         <motion.div
             initial={{ x: 500, opacity: 0, scale: 2 }}
-            animate={{ x: 0, opacity: 1, scale: 1 }}>
+            animate={{ x: 0, opacity: 1, scale: 1 }}
+            transition={{ ease: "easeInOut", duration: 0.5 }}>
             <SVGBase className={classes.homePageSvgBase} />
             <HomeBanner className={classes.homePageSvgBase} />
         </motion.div>
