@@ -22,7 +22,10 @@ const LoginPage = ({ userName, setUserName }) => {
     const classes = useStyles();
 
     return (
-        <motion.div className={classes.loginPagePaper}>
+        <motion.div
+            initial={{ scale: 5, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            className={classes.loginPagePaper}>
             <TextField
                 className={classes.loginTextFeid}
                 value={userName}
