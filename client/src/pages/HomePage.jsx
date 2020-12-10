@@ -25,9 +25,9 @@ const HomePage = () => {
             justify='space-between'>
             <Grid item>
                 <motion.div
-                    initial={{ x: -100, y: -100, opacity: 0 }}
-                    animate={{ x: 0, y: 0, opacity: 1 }}
-                    transition={{ ease: "easeInOut", duration: 0.3 }}
+                    initial={{ x: -350, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ ease: "easeOut", duration: 0.3 }}
                     className={classes.homePageHeadTypography}>
                     <Typography variant='h2'>
                         A Platform To Create A Quiz <br />
