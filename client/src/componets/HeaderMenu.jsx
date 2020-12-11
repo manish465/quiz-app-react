@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Paper, makeStyles, Button, Typography } from "@material-ui/core";
 
@@ -34,7 +34,7 @@ const HeaderMenu = ({ setIsMenuOpen }) => {
             animate={{ y: [-200, 0], skewY: [6, 0] }}
             exit={{ y: -800, skewY: 6 }}
             transition={{
-                ease: "anticipate",
+                ease: [0.17, 0.67, 0.83, 0.67],
                 duration: 0.5,
             }}
             className={classes.headerMenuPage}>
@@ -47,7 +47,14 @@ const HeaderMenu = ({ setIsMenuOpen }) => {
                     variant='text'>
                     <Typography
                         component={motion.div}
-                        whileHover={{ skewY: 4 }}
+                        initial={{ x: -300, opacity: 0 }}
+                        animate={{ x: 0, opacity: [0.01, 0.05, 0.4, 1] }}
+                        transition={{
+                            ease: "easeOut",
+                            delay: 0.4,
+                            duration: 1,
+                        }}
+                        whileHover={{ skewY: 4, scale: 1.1 }}
                         whileTap={{ rotateX: 40 }}
                         variant='h3'>
                         CREATE
@@ -61,7 +68,14 @@ const HeaderMenu = ({ setIsMenuOpen }) => {
                     variant='text'>
                     <Typography
                         component={motion.div}
-                        whileHover={{ skewY: 4 }}
+                        initial={{ x: -300, opacity: 0 }}
+                        animate={{ x: 0, opacity: [0.01, 0.05, 0.4, 1] }}
+                        transition={{
+                            ease: "easeOut",
+                            delay: 0.3,
+                            duration: 1,
+                        }}
+                        whileHover={{ skewY: 4, scale: 1.1 }}
                         whileTap={{ rotateX: 40 }}
                         variant='h3'>
                         JOIN
@@ -75,7 +89,14 @@ const HeaderMenu = ({ setIsMenuOpen }) => {
                     variant='text'>
                     <Typography
                         component={motion.div}
-                        whileHover={{ skewY: 4 }}
+                        initial={{ x: -300, opacity: 0 }}
+                        animate={{ x: 0, opacity: [0.01, 0.05, 0.4, 1] }}
+                        transition={{
+                            ease: "easeOut",
+                            delay: 0.2,
+                            duration: 1,
+                        }}
+                        whileHover={{ skewY: 4, scale: 1.1 }}
                         whileTap={{ rotateX: 40 }}
                         variant='h3'>
                         OPTION
@@ -89,7 +110,14 @@ const HeaderMenu = ({ setIsMenuOpen }) => {
                     variant='text'>
                     <Typography
                         component={motion.div}
-                        whileHover={{ skewY: 4 }}
+                        initial={{ x: -300, opacity: 0 }}
+                        animate={{ x: 0, opacity: [0.01, 0.05, 0.4, 1] }}
+                        transition={{
+                            ease: "easeOut",
+                            delay: 0.1,
+                            duration: 1,
+                        }}
+                        whileHover={{ skewY: 4, scale: 1.1 }}
                         whileTap={{ rotateX: 40 }}
                         variant='h3'>
                         ABOUT US
