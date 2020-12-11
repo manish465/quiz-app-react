@@ -64,7 +64,14 @@ const HeaderMenu = ({ setIsMenuOpen }) => {
             <AnimatePresence>
                 <motion.img
                     initial={{ opacity: 0, skewY: 10 }}
-                    animate={{ opacity: 1, skewY: 0 }}
+                    animate={{
+                        opacity: [0.01, 0.05, 0.4, 1],
+                        skewY: 0,
+                    }}
+                    transition={{
+                        ease: [0.17, 0.67, 0.83, 0.67],
+                        duration: 0.5,
+                    }}
                     exit={{ opacity: 0 }}
                     key={image}
                     className={classes.headerMenuBackgroundImage}
