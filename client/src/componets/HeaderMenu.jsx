@@ -35,6 +35,29 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+const menuPaperVariants = {
+    initial: { y: -800, skewY: 10 },
+    animate: { y: [-800, -700, 0], skewY: [9, 8, 0] },
+    exit: { y: -800, skewY: 6 },
+    transition: {
+        ease: "anticipate",
+        duration: 0.4,
+    },
+};
+
+const menuImageVariant = {
+    initial: { opacity: 0, skewY: -10 },
+    animate: {
+        opacity: [0.01, 0.05, 0.4, 1],
+        skewY: [10, 6, 0],
+    },
+    exit: { opacity: 0 },
+    transition: {
+        ease: [0.17, 0.67, 0.83, 0.67],
+        duration: 0.5,
+    },
+};
+
 const imageList = [create, join, option, about];
 
 const HeaderMenu = ({ setIsMenuOpen }) => {
@@ -45,26 +68,19 @@ const HeaderMenu = ({ setIsMenuOpen }) => {
     return (
         <Paper
             component={motion.div}
-            initial={{ y: -800, skewY: 10 }}
-            animate={{ y: [-800, -700, 0], skewY: [6, 0] }}
-            exit={{ y: -800, skewY: 6 }}
-            transition={{
-                ease: [0.17, 0.67, 0.83, 0.67],
-                duration: 0.5,
-            }}
+            variants={menuPaperVariants}
+            initial='initial'
+            animate='animate'
+            exit='exit'
+            transition='transition'
             className={classes.headerMenuPage}>
             <AnimatePresence>
                 <motion.img
-                    initial={{ opacity: 0, skewY: 10 }}
-                    animate={{
-                        opacity: [0.01, 0.05, 0.4, 1],
-                        skewY: [10, 6, 0],
-                    }}
-                    transition={{
-                        ease: [0.17, 0.67, 0.83, 0.67],
-                        duration: 0.5,
-                    }}
-                    exit={{ opacity: 0 }}
+                    variants={menuImageVariant}
+                    initial='initial'
+                    animate='animate'
+                    transition='transition'
+                    exit='exit'
                     key={image}
                     className={classes.headerMenuBackgroundImage}
                     src={imageList[image]}
@@ -72,42 +88,53 @@ const HeaderMenu = ({ setIsMenuOpen }) => {
                 />
             </AnimatePresence>
             <div className={classes.headerMenuPageButtonGroup}>
-                {buttonData.map((buttonData, key) => (
-                    <Button
-                        onMouseEnter={() => setImage(buttonData.imgID)}
-                        onMouseLeave={() => setImage(-1)}
-                        component={Link}
-                        key={key}
-                        to={buttonData.path}
-                        className={classes.headerMenuPageButton}
-                        onClick={() => setIsMenuOpen(false)}
-                        variant='text'>
-                        <Typography
-                            component={motion.div}
-                            initial={{ x: -300, opacity: 0 }}
-                            animate={{
-                                x: 0,
-                                opacity: [0.01, 0.05, 0.4, 1],
-                                transition: {
-                                    ease: [0.17, 0.67, 0.83, 0.67],
-                                    delay: buttonData.animtionDelay,
-                                    duration: 1,
-                                },
-                            }}
-                            whileHover={{
-                                scale: 1.1,
-                                transition: {
-                                    duration: 1,
-                                    ease: [0.17, 0.67, 0.83, 0.67],
-                                },
-                                color: "#2f00ff",
-                            }}
-                            whileTap={{ rotateX: 40 }}
-                            variant='h3'>
-                            {buttonData.name}
-                        </Typography>
-                    </Button>
-                ))}
+                {buttonData.map((buttonData, key) => {
+                    const menuTypographyVariants = {
+                        initial: { x: -300, opacity: 0 },
+                        animate: {
+                            x: 0,
+                            opacity: [0.01, 0.05, 0.4, 1],
+                            transition: {
+                                ease: [0.17, 0.67, 0.83, 0.67],
+                                delay: buttonData.animtionDelay,
+                                duration: 1,
+                            },
+                        },
+                        hover: {
+                            scale: 1.1,
+                            transition: {
+                                duration: 1,
+                                ease: [0.17, 0.67, 0.83, 0.67],
+                            },
+                            color: "#2f00ff",
+                        },
+                        tap: { rotateX: 40 },
+                    };
+
+                    return (
+                        <Button
+                            onMouseEnter={() => setImage(buttonData.imgID)}
+                            onMouseLeave={() => setImage(-1)}
+                            component={Link}
+                            key={key}
+                            to={buttonData.path}
+                            className={classes.headerMenuPageButton}
+                            onClick={() => setIsMenuOpen(false)}
+                            variant='text'
+                            color='secondary'>
+                            <Typography
+                                component={motion.div}
+                                variants={menuTypographyVariants}
+                                initial='initial'
+                                animate='animate'
+                                whileHover='hover'
+                                whileTap='tap'
+                                variant='h3'>
+                                {buttonData.name}
+                            </Typography>
+                        </Button>
+                    );
+                })}
             </div>
         </Paper>
     );
