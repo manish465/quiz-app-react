@@ -46,7 +46,7 @@ const HeaderMenu = ({ setIsMenuOpen }) => {
         <Paper
             component={motion.div}
             initial={{ y: -800, skewY: 10 }}
-            animate={{ y: [-200, 0], skewY: [6, 0] }}
+            animate={{ y: [-800, -700, 0], skewY: [6, 0] }}
             exit={{ y: -800, skewY: 6 }}
             transition={{
                 ease: [0.17, 0.67, 0.83, 0.67],
@@ -58,7 +58,7 @@ const HeaderMenu = ({ setIsMenuOpen }) => {
                     initial={{ opacity: 0, skewY: 10 }}
                     animate={{
                         opacity: [0.01, 0.05, 0.4, 1],
-                        skewY: 0,
+                        skewY: [10, 6, 0],
                     }}
                     transition={{
                         ease: [0.17, 0.67, 0.83, 0.67],
@@ -85,17 +85,20 @@ const HeaderMenu = ({ setIsMenuOpen }) => {
                         <Typography
                             component={motion.div}
                             initial={{ x: -300, opacity: 0 }}
-                            animate={{ x: 0, opacity: [0.01, 0.05, 0.4, 1] }}
-                            transition={{
-                                ease: "easeOut",
-                                delay: buttonData.animtionDelay,
-                                duration: 1,
+                            animate={{
+                                x: 0,
+                                opacity: [0.01, 0.05, 0.4, 1],
+                                transition: {
+                                    ease: [0.17, 0.67, 0.83, 0.67],
+                                    delay: buttonData.animtionDelay,
+                                    duration: 1,
+                                },
                             }}
                             whileHover={{
                                 scale: 1.1,
                                 transition: {
-                                    duration: 0.1,
-                                    ease: "easeInOut",
+                                    duration: 1,
+                                    ease: [0.17, 0.67, 0.83, 0.67],
                                 },
                                 color: "#2f00ff",
                             }}
