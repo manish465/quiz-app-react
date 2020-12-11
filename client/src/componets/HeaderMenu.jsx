@@ -43,6 +43,13 @@ const HeaderMenu = ({ setIsMenuOpen }) => {
 
     const [image, setImage] = useState(-1);
 
+    const buttonData = [
+        { name: "CREATE", imgID: 0, animtionDelay: 0.4 },
+        { name: "JOIN", imgID: 1, animtionDelay: 0.3 },
+        { name: "OPTION", imgID: 2, animtionDelay: 0.2 },
+        { name: "ABOUT US", imgID: 3, animtionDelay: 0.1 },
+    ];
+
     return (
         <Paper
             component={motion.div}
@@ -56,8 +63,8 @@ const HeaderMenu = ({ setIsMenuOpen }) => {
             className={classes.headerMenuPage}>
             <AnimatePresence>
                 <motion.img
-                    initial={{ opacity: 0, y: 300, skewY: 10 }}
-                    animate={{ opacity: 1, y: 0, skewY: 0 }}
+                    initial={{ opacity: 0, skewY: 10 }}
+                    animate={{ opacity: 1, skewY: 0 }}
                     exit={{ opacity: 0 }}
                     key={image}
                     className={classes.headerMenuBackgroundImage}
@@ -66,120 +73,154 @@ const HeaderMenu = ({ setIsMenuOpen }) => {
                 />
             </AnimatePresence>
             <div className={classes.headerMenuPageButtonGroup}>
-                <Button
-                    onMouseEnter={() => setImage(0)}
-                    onMouseLeave={() => setImage(-1)}
-                    component={Link}
-                    to='/'
-                    className={classes.headerMenuPageButton}
-                    onClick={() => setIsMenuOpen(false)}
-                    variant='text'>
-                    <Typography
-                        component={motion.div}
-                        initial={{ x: -300, opacity: 0 }}
-                        animate={{ x: 0, opacity: [0.01, 0.05, 0.4, 1] }}
-                        transition={{
-                            ease: "easeOut",
-                            delay: 0.4,
-                            duration: 1,
-                        }}
-                        whileHover={{
-                            scale: 1.5,
-                            transition: { duration: 0.1, ease: "easeInOut" },
-                            color: "#2f00ff",
-                        }}
-                        whileTap={{ rotateX: 40 }}
-                        variant='h3'>
-                        CREATE
-                    </Typography>
-                </Button>
-                <Button
-                    onMouseEnter={() => setImage(1)}
-                    onMouseLeave={() => setImage(-1)}
-                    component={Link}
-                    to='/'
-                    className={classes.headerMenuPageButton}
-                    onClick={() => setIsMenuOpen(false)}
-                    variant='text'>
-                    <Typography
-                        component={motion.div}
-                        initial={{ x: -300, opacity: 0 }}
-                        animate={{ x: 0, opacity: [0.01, 0.05, 0.4, 1] }}
-                        transition={{
-                            ease: "easeOut",
-                            delay: 0.3,
-                            duration: 1,
-                        }}
-                        whileHover={{
-                            scale: 1.5,
-                            transition: { duration: 0.1, ease: "easeInOut" },
-                            color: "#2f00ff",
-                        }}
-                        whileTap={{ rotateX: 40 }}
-                        variant='h3'>
-                        JOIN
-                    </Typography>
-                </Button>
-                <Button
-                    onMouseEnter={() => setImage(2)}
-                    onMouseLeave={() => setImage(-1)}
-                    component={Link}
-                    to='/'
-                    className={classes.headerMenuPageButton}
-                    onClick={() => setIsMenuOpen(false)}
-                    variant='text'>
-                    <Typography
-                        component={motion.div}
-                        initial={{ x: -300, opacity: 0 }}
-                        animate={{ x: 0, opacity: [0.01, 0.05, 0.4, 1] }}
-                        transition={{
-                            ease: "easeOut",
-                            delay: 0.2,
-                            duration: 1,
-                        }}
-                        whileHover={{
-                            scale: 1.5,
-                            transition: { duration: 0.1, ease: "easeInOut" },
-                            color: "#2f00ff",
-                        }}
-                        whileTap={{ rotateX: 40 }}
-                        variant='h3'>
-                        OPTION
-                    </Typography>
-                </Button>
-                <Button
-                    onMouseEnter={() => setImage(3)}
-                    onMouseLeave={() => setImage(-1)}
-                    component={Link}
-                    to='/'
-                    className={classes.headerMenuPageButton}
-                    onClick={() => setIsMenuOpen(false)}
-                    variant='text'>
-                    <Typography
-                        component={motion.div}
-                        initial={{ x: -300, opacity: 0 }}
-                        animate={{ x: 0, opacity: [0.01, 0.05, 0.4, 1] }}
-                        transition={{
-                            ease: "easeOut",
-                            delay: 0.1,
-                            duration: 1,
-                        }}
-                        whileHover={{
-                            scale: 1.5,
-                            transition: { duration: 0.1, ease: "easeInOut" },
-                            color: "#2f00ff",
-                        }}
-                        whileTap={{ rotateX: 40 }}
-                        variant='h3'>
-                        ABOUT US
-                    </Typography>
-                </Button>
+                {buttonData.map((buttonData, key) => (
+                    <Button
+                        onMouseEnter={() => setImage(buttonData.imgID)}
+                        onMouseLeave={() => setImage(-1)}
+                        component={Link}
+                        key={key}
+                        to='/'
+                        className={classes.headerMenuPageButton}
+                        onClick={() => setIsMenuOpen(false)}
+                        variant='text'>
+                        <Typography
+                            component={motion.div}
+                            initial={{ x: -300, opacity: 0 }}
+                            animate={{ x: 0, opacity: [0.01, 0.05, 0.4, 1] }}
+                            transition={{
+                                ease: "easeOut",
+                                delay: buttonData.animtionDelay,
+                                duration: 1,
+                            }}
+                            whileHover={{
+                                scale: 1.1,
+                                transition: {
+                                    duration: 0.1,
+                                    ease: "easeInOut",
+                                },
+                                color: "#2f00ff",
+                            }}
+                            whileTap={{ rotateX: 40 }}
+                            variant='h3'>
+                            {buttonData.name}
+                        </Typography>
+                    </Button>
+                ))}
             </div>
         </Paper>
     );
 };
 
 export default HeaderMenu;
+
+// {<Button
+//                     onMouseEnter={() => setImage(0)}
+//                     onMouseLeave={() => setImage(-1)}
+//                     component={Link}
+//                     to='/'
+//                     className={classes.headerMenuPageButton}
+//                     onClick={() => setIsMenuOpen(false)}
+//                     variant='text'>
+//                     <Typography
+//                         component={motion.div}
+//                         initial={{ x: -300, opacity: 0 }}
+//                         animate={{ x: 0, opacity: [0.01, 0.05, 0.4, 1] }}
+//                         transition={{
+//                             ease: "easeOut",
+//                             delay: 0.4,
+//                             duration: 1,
+//                         }}
+//                         whileHover={{
+//                             scale: 1.5,
+//                             transition: { duration: 0.1, ease: "easeInOut" },
+//                             color: "#2f00ff",
+//                         }}
+//                         whileTap={{ rotateX: 40 }}
+//                         variant='h3'>
+//                         CREATE
+//                     </Typography>
+//                 </Button>
+//                 <Button
+//                     onMouseEnter={() => setImage(1)}
+//                     onMouseLeave={() => setImage(-1)}
+//                     component={Link}
+//                     to='/'
+//                     className={classes.headerMenuPageButton}
+//                     onClick={() => setIsMenuOpen(false)}
+//                     variant='text'>
+//                     <Typography
+//                         component={motion.div}
+//                         initial={{ x: -300, opacity: 0 }}
+//                         animate={{ x: 0, opacity: [0.01, 0.05, 0.4, 1] }}
+//                         transition={{
+//                             ease: "easeOut",
+//                             delay: 0.3,
+//                             duration: 1,
+//                         }}
+//                         whileHover={{
+//                             scale: 1.5,
+//                             transition: { duration: 0.1, ease: "easeInOut" },
+//                             color: "#2f00ff",
+//                         }}
+//                         whileTap={{ rotateX: 40 }}
+//                         variant='h3'>
+//                         JOIN
+//                     </Typography>
+//                 </Button>
+//                 <Button
+//                     onMouseEnter={() => setImage(2)}
+//                     onMouseLeave={() => setImage(-1)}
+//                     component={Link}
+//                     to='/'
+//                     className={classes.headerMenuPageButton}
+//                     onClick={() => setIsMenuOpen(false)}
+//                     variant='text'>
+//                     <Typography
+//                         component={motion.div}
+//                         initial={{ x: -300, opacity: 0 }}
+//                         animate={{ x: 0, opacity: [0.01, 0.05, 0.4, 1] }}
+//                         transition={{
+//                             ease: "easeOut",
+//                             delay: 0.2,
+//                             duration: 1,
+//                         }}
+//                         whileHover={{
+//                             scale: 1.5,
+//                             transition: { duration: 0.1, ease: "easeInOut" },
+//                             color: "#2f00ff",
+//                         }}
+//                         whileTap={{ rotateX: 40 }}
+//                         variant='h3'>
+//                         OPTION
+//                     </Typography>
+//                 </Button>
+//                 <Button
+//                     onMouseEnter={() => setImage(3)}
+//                     onMouseLeave={() => setImage(-1)}
+//                     component={Link}
+//                     to='/'
+//                     className={classes.headerMenuPageButton}
+//                     onClick={() => setIsMenuOpen(false)}
+//                     variant='text'>
+//                     <Typography
+//                         component={motion.div}
+//                         initial={{ x: -300, opacity: 0 }}
+//                         animate={{ x: 0, opacity: [0.01, 0.05, 0.4, 1] }}
+//                         transition={{
+//                             ease: "easeOut",
+//                             delay: 0.1,
+//                             duration: 1,
+//                         }}
+//                         whileHover={{
+//                             scale: 1.5,
+//                             transition: { duration: 0.1, ease: "easeInOut" },
+//                             color: "#2f00ff",
+//                         }}
+//                         whileTap={{ rotateX: 40 }}
+//                         variant='h3'>
+//                         ABOUT US
+//                     </Typography>
+//                 </Button>}
 
 // {
 //     <IconButton
