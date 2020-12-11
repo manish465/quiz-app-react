@@ -4,7 +4,7 @@ import { Paper, makeStyles, Button, Typography } from "@material-ui/core";
 
 import { Link } from "react-router-dom";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 import create from "../Assets/menuBG/create.webp";
 import join from "../Assets/menuBG/join.webp";
@@ -33,7 +33,6 @@ const useStyles = makeStyles((theme) => ({
         position: "absolute",
         left: 0,
         top: 0,
-        filter: "blur(2px)",
     },
 }));
 
@@ -55,11 +54,17 @@ const HeaderMenu = ({ setIsMenuOpen }) => {
                 duration: 0.5,
             }}
             className={classes.headerMenuPage}>
-            <img
-                className={classes.headerMenuBackgroundImage}
-                src={imageList[image]}
-                alt={image}
-            />
+            <AnimatePresence>
+                <motion.img
+                    initial={{ opacity: 0, y: 300, skewY: 10 }}
+                    animate={{ opacity: 1, y: 0, skewY: 0 }}
+                    exit={{ opacity: 0 }}
+                    key={image}
+                    className={classes.headerMenuBackgroundImage}
+                    src={imageList[image]}
+                    alt={image}
+                />
+            </AnimatePresence>
             <div className={classes.headerMenuPageButtonGroup}>
                 <Button
                     onMouseEnter={() => setImage(0)}
@@ -80,7 +85,7 @@ const HeaderMenu = ({ setIsMenuOpen }) => {
                         }}
                         whileHover={{
                             scale: 1.5,
-                            transition: { duration: 0.3, ease: "easeInOut" },
+                            transition: { duration: 0.1, ease: "easeInOut" },
                             color: "#2f00ff",
                         }}
                         whileTap={{ rotateX: 40 }}
@@ -107,7 +112,7 @@ const HeaderMenu = ({ setIsMenuOpen }) => {
                         }}
                         whileHover={{
                             scale: 1.5,
-                            transition: { duration: 0.3, ease: "easeInOut" },
+                            transition: { duration: 0.1, ease: "easeInOut" },
                             color: "#2f00ff",
                         }}
                         whileTap={{ rotateX: 40 }}
@@ -134,7 +139,7 @@ const HeaderMenu = ({ setIsMenuOpen }) => {
                         }}
                         whileHover={{
                             scale: 1.5,
-                            transition: { duration: 0.3, ease: "easeInOut" },
+                            transition: { duration: 0.1, ease: "easeInOut" },
                             color: "#2f00ff",
                         }}
                         whileTap={{ rotateX: 40 }}
@@ -161,7 +166,7 @@ const HeaderMenu = ({ setIsMenuOpen }) => {
                         }}
                         whileHover={{
                             scale: 1.5,
-                            transition: { duration: 0.3, ease: "easeInOut" },
+                            transition: { duration: 0.1, ease: "easeInOut" },
                             color: "#2f00ff",
                         }}
                         whileTap={{ rotateX: 40 }}
