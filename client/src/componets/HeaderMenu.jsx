@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
         width: "100%",
         height: "100vh",
         background: theme.palette.primary.main,
-        padding: "150px 30px",
+        padding: "150px 100px",
     },
     headerMenuPageButtonGroup: {
         display: "flex",
@@ -54,7 +54,10 @@ const HeaderMenu = ({ setIsMenuOpen }) => {
                             delay: 0.4,
                             duration: 1,
                         }}
-                        whileHover={{ skewY: 4, scale: 1.1 }}
+                        whileHover={{
+                            scale: 1.5,
+                            transition: { duration: 0.3, ease: "easeInOut" },
+                        }}
                         whileTap={{ rotateX: 40 }}
                         variant='h3'>
                         CREATE
@@ -75,7 +78,10 @@ const HeaderMenu = ({ setIsMenuOpen }) => {
                             delay: 0.3,
                             duration: 1,
                         }}
-                        whileHover={{ skewY: 4, scale: 1.1 }}
+                        whileHover={{
+                            scale: 1.5,
+                            transition: { duration: 0.3, ease: "easeInOut" },
+                        }}
                         whileTap={{ rotateX: 40 }}
                         variant='h3'>
                         JOIN
@@ -96,7 +102,10 @@ const HeaderMenu = ({ setIsMenuOpen }) => {
                             delay: 0.2,
                             duration: 1,
                         }}
-                        whileHover={{ skewY: 4, scale: 1.1 }}
+                        whileHover={{
+                            scale: 1.5,
+                            transition: { duration: 0.3, ease: "easeInOut" },
+                        }}
                         whileTap={{ rotateX: 40 }}
                         variant='h3'>
                         OPTION
@@ -117,7 +126,10 @@ const HeaderMenu = ({ setIsMenuOpen }) => {
                             delay: 0.1,
                             duration: 1,
                         }}
-                        whileHover={{ skewY: 4, scale: 1.1 }}
+                        whileHover={{
+                            scale: 1.5,
+                            transition: { duration: 0.3, ease: "easeInOut" },
+                        }}
                         whileTap={{ rotateX: 40 }}
                         variant='h3'>
                         ABOUT US
