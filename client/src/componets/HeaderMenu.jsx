@@ -6,10 +6,9 @@ import { Link } from "react-router-dom";
 
 import { motion, AnimatePresence } from "framer-motion";
 
-import create from "../Assets/menuBG/create.webp";
-import join from "../Assets/menuBG/join.webp";
-import option from "../Assets/menuBG/option.webp";
-import about from "../Assets/menuBG/about.webp";
+import buttonData from "../Data/buttonData";
+
+import { create, join, option, about } from "../Assets/menuBG";
 
 const useStyles = makeStyles((theme) => ({
     headerMenuPage: {
@@ -42,13 +41,6 @@ const HeaderMenu = ({ setIsMenuOpen }) => {
     const classes = useStyles();
 
     const [image, setImage] = useState(-1);
-
-    const buttonData = [
-        { name: "CREATE", imgID: 0, animtionDelay: 0.4 },
-        { name: "JOIN", imgID: 1, animtionDelay: 0.3 },
-        { name: "OPTION", imgID: 2, animtionDelay: 0.2 },
-        { name: "ABOUT US", imgID: 3, animtionDelay: 0.1 },
-    ];
 
     return (
         <Paper
@@ -86,7 +78,7 @@ const HeaderMenu = ({ setIsMenuOpen }) => {
                         onMouseLeave={() => setImage(-1)}
                         component={Link}
                         key={key}
-                        to='/'
+                        to={buttonData.path}
                         className={classes.headerMenuPageButton}
                         onClick={() => setIsMenuOpen(false)}
                         variant='text'>

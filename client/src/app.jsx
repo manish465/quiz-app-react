@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 
-import { Route, Switch, useLocation } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
+import {
+    AboutUsPage,
+    CreatePage,
+    HomePage,
+    JoinPage,
+    LoginPage,
+    OptionPage,
+} from "./Pages";
 
 import Header from "./Componets/Header";
-
-import HomePage from "./Pages/HomePage";
-import LoginPage from "./Pages/LoginPage";
 
 import { lightTheme, darkTheme } from "./Stylings/themes";
 
@@ -18,8 +23,6 @@ const App = () => {
     const [userName, setUserName] = useState("");
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    const location = useLocation();
-
     return (
         <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
             <CssBaseline />
@@ -31,12 +34,24 @@ const App = () => {
                 isMenuOpen={isMenuOpen}
                 setIsMenuOpen={setIsMenuOpen}
             />
-            <Switch location={location} key={location.pathname}>
+            <Switch>
                 <Route exact path='/'>
                     <HomePage />
                 </Route>
                 <Route exact path='/login'>
                     <LoginPage userName={userName} setUserName={setUserName} />
+                </Route>
+                <Route exact path='/create-test'>
+                    <CreatePage />
+                </Route>
+                <Route exact path='/join-test'>
+                    <JoinPage />
+                </Route>
+                <Route exact path='/option'>
+                    <OptionPage />
+                </Route>
+                <Route exact path='/about-us'>
+                    <AboutUsPage />
                 </Route>
             </Switch>
         </ThemeProvider>
