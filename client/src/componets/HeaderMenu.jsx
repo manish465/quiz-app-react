@@ -6,6 +6,11 @@ import { Link } from "react-router-dom";
 
 import { motion } from "framer-motion";
 
+import create from "../Assets/menuBG/create.webp";
+import join from "../Assets/menuBG/join.webp";
+import option from "../Assets/menuBG/option.webp";
+import about from "../Assets/menuBG/about.webp";
+
 const useStyles = makeStyles((theme) => ({
     headerMenuPage: {
         zIndex: 1200,
@@ -22,10 +27,22 @@ const useStyles = makeStyles((theme) => ({
     headerMenuPageButton: {
         marginTop: "10px ",
     },
+    headerMenuBackgroundImage: {
+        height: "100vh",
+        width: "100%",
+        position: "absolute",
+        left: 0,
+        top: 0,
+        filter: "blur(2px)",
+    },
 }));
+
+const imageList = [create, join, option, about];
 
 const HeaderMenu = ({ setIsMenuOpen }) => {
     const classes = useStyles();
+
+    const [image, setImage] = useState(-1);
 
     return (
         <Paper
@@ -38,8 +55,15 @@ const HeaderMenu = ({ setIsMenuOpen }) => {
                 duration: 0.5,
             }}
             className={classes.headerMenuPage}>
+            <img
+                className={classes.headerMenuBackgroundImage}
+                src={imageList[image]}
+                alt={image}
+            />
             <div className={classes.headerMenuPageButtonGroup}>
                 <Button
+                    onMouseEnter={() => setImage(0)}
+                    onMouseLeave={() => setImage(-1)}
                     component={Link}
                     to='/'
                     className={classes.headerMenuPageButton}
@@ -64,6 +88,8 @@ const HeaderMenu = ({ setIsMenuOpen }) => {
                     </Typography>
                 </Button>
                 <Button
+                    onMouseEnter={() => setImage(1)}
+                    onMouseLeave={() => setImage(-1)}
                     component={Link}
                     to='/'
                     className={classes.headerMenuPageButton}
@@ -88,6 +114,8 @@ const HeaderMenu = ({ setIsMenuOpen }) => {
                     </Typography>
                 </Button>
                 <Button
+                    onMouseEnter={() => setImage(2)}
+                    onMouseLeave={() => setImage(-1)}
                     component={Link}
                     to='/'
                     className={classes.headerMenuPageButton}
@@ -112,6 +140,8 @@ const HeaderMenu = ({ setIsMenuOpen }) => {
                     </Typography>
                 </Button>
                 <Button
+                    onMouseEnter={() => setImage(3)}
+                    onMouseLeave={() => setImage(-1)}
                     component={Link}
                     to='/'
                     className={classes.headerMenuPageButton}
