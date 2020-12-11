@@ -81,6 +81,7 @@ const HeaderMenu = ({ setIsMenuOpen }) => {
                         whileHover={{
                             scale: 1.5,
                             transition: { duration: 0.3, ease: "easeInOut" },
+                            color: "#2f00ff",
                         }}
                         whileTap={{ rotateX: 40 }}
                         variant='h3'>
@@ -107,6 +108,7 @@ const HeaderMenu = ({ setIsMenuOpen }) => {
                         whileHover={{
                             scale: 1.5,
                             transition: { duration: 0.3, ease: "easeInOut" },
+                            color: "#2f00ff",
                         }}
                         whileTap={{ rotateX: 40 }}
                         variant='h3'>
@@ -133,6 +135,7 @@ const HeaderMenu = ({ setIsMenuOpen }) => {
                         whileHover={{
                             scale: 1.5,
                             transition: { duration: 0.3, ease: "easeInOut" },
+                            color: "#2f00ff",
                         }}
                         whileTap={{ rotateX: 40 }}
                         variant='h3'>
@@ -159,6 +162,7 @@ const HeaderMenu = ({ setIsMenuOpen }) => {
                         whileHover={{
                             scale: 1.5,
                             transition: { duration: 0.3, ease: "easeInOut" },
+                            color: "#2f00ff",
                         }}
                         whileTap={{ rotateX: 40 }}
                         variant='h3'>
