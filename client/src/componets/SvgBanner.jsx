@@ -16,14 +16,21 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+const svgVariant = {
+    initial: { x: 500, opacity: 0, scale: 2 },
+    animate: { x: 0, opacity: 1, scale: 1 },
+    transition: { ease: "anticipate", duration: 0.3 },
+};
+
 const SvgBanner = () => {
     const classes = useStyles();
 
     return (
         <motion.div
-            initial={{ x: 500, opacity: 0, scale: 2 }}
-            animate={{ x: 0, opacity: 1, scale: 1 }}
-            transition={{ ease: "anticipate", duration: 0.3 }}>
+            variants={svgVariant}
+            initial='initial'
+            animate='animate'
+            transition='transition'>
             <SVGBase className={classes.homePageSvgBase} />
             <HomeBanner className={classes.homePageSvgBase} />
         </motion.div>

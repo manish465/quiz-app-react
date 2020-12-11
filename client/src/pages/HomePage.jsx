@@ -16,6 +16,12 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+const homePageTypographyVariant = {
+    initial: { x: -350, opacity: 0 },
+    animate: { x: 0, opacity: 1 },
+    transition: { ease: "easeOut", duration: 0.3 },
+};
+
 const HomePage = () => {
     const classes = useStyles();
     return (
@@ -26,9 +32,10 @@ const HomePage = () => {
             <Grid item>
                 <Typography
                     component={motion.div}
-                    initial={{ x: -350, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ ease: "easeOut", duration: 0.3 }}
+                    variants={homePageTypographyVariant}
+                    initial='initial'
+                    animate='animate'
+                    transition='transition'
                     className={classes.homePageHeadTypography}
                     variant='h2'>
                     A Platform To Create A Quiz <br />
