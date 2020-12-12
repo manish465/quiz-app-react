@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 
 import {
     makeStyles,
@@ -9,6 +9,7 @@ import {
     Stepper,
     Step,
     StepLabel,
+    Checkbox,
 } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -31,23 +32,59 @@ const CreatePage = () => {
     const [testName, setTestName] = useState("");
     const [testNumberOfQuestions, setTestNumberOfQuestions] = useState(0);
 
-    const creatFirstPage = (
-        <>
-            <TextField
-                className={classes.upperMargin}
-                variant='outlined'
-                label='Enter Name Of The Test'
-                fullWidth
-            />
-            <TextField
-                className={classes.upperMargin}
-                variant='outlined'
-                label='Enter Numebr Of Questions'
-                fullWidth
-                type='number'
-            />
-        </>
-    );
+    function getStepContent(step) {
+        switch (step) {
+            case 0:
+                return (
+                    <>
+                        <TextField
+                            className={classes.upperMargin}
+                            variant='outlined'
+                            label='Enter Name Of The Test'
+                            fullWidth
+                        />
+                        <TextField
+                            className={classes.upperMargin}
+                            variant='outlined'
+                            label='Enter Numebr Of Questions'
+                            fullWidth
+                            type='number'
+                        />
+                    </>
+                );
+            case 1:
+                return (
+                    <>
+                        <TextField
+                            className={classes.upperMargin}
+                            variant='outlined'
+                            label='Enter Qustion'
+                            fullWidth
+                        />
+                        <Paper>
+                            <Checkbox size='large' />
+                            <TextField variant='filled' label='Enter Option' />
+                        </Paper>
+                        <Paper>
+                            <Checkbox size='large' />
+                            <TextField variant='filled' label='Enter Option' />
+                        </Paper>
+                        <Paper>
+                            <Checkbox size='large' />
+                            <TextField variant='filled' label='Enter Option' />
+                        </Paper>
+                        <Paper>
+                            <Checkbox size='large' />
+                            <TextField variant='filled' label='Enter Option' />
+                        </Paper>
+                    </>
+                );
+            case 2:
+                return "This is the bit I really care about!";
+            default:
+                return "Unknown step";
+        }
+    }
 
     return (
         <div className={classes.createPageMaindiv}>
@@ -63,7 +100,7 @@ const CreatePage = () => {
                 </Step>
             </Stepper>
             <Paper className={classes.createPagePaper}>
-                {creatFirstPage}
+                {getStepContent(activeStep)}
                 <ButtonGroup>
                     <Button
                         className={classes.upperMargin}
