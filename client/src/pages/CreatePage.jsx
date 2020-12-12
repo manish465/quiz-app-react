@@ -62,20 +62,22 @@ const CreatePage = () => {
                             fullWidth
                         />
                         <Paper>
+                            <TextField
+                                variant='filled'
+                                label='Enter Option'></TextField>
                             <Checkbox size='large' />
-                            <TextField variant='filled' label='Enter Option' />
                         </Paper>
                         <Paper>
-                            <Checkbox size='large' />
                             <TextField variant='filled' label='Enter Option' />
+                            <Checkbox size='large' />
                         </Paper>
                         <Paper>
-                            <Checkbox size='large' />
                             <TextField variant='filled' label='Enter Option' />
+                            <Checkbox size='large' />
                         </Paper>
                         <Paper>
-                            <Checkbox size='large' />
                             <TextField variant='filled' label='Enter Option' />
+                            <Checkbox size='large' />
                         </Paper>
                     </>
                 );
