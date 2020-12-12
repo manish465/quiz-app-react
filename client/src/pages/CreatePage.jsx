@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 
+import CreateFirst from "./../Componets/CreateFirst";
+import CreateSecond from "./../Componets/CreateSecond";
+
 import {
     makeStyles,
-    TextField,
     Button,
     ButtonGroup,
     Paper,
     Stepper,
     Step,
     StepLabel,
-    Checkbox,
 } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -29,57 +30,30 @@ const CreatePage = () => {
 
     const [activeStep, setActiveStep] = useState(0);
 
-    const [testName, setTestName] = useState("");
+    const [testName, setTestName] = useState(null);
     const [testNumberOfQuestions, setTestNumberOfQuestions] = useState(0);
+    const [testData, setTestData] = useState([]);
 
     function getStepContent(step) {
         switch (step) {
             case 0:
                 return (
-                    <>
-                        <TextField
-                            className={classes.upperMargin}
-                            variant='outlined'
-                            label='Enter Name Of The Test'
-                            fullWidth
-                        />
-                        <TextField
-                            className={classes.upperMargin}
-                            variant='outlined'
-                            label='Enter Numebr Of Questions'
-                            fullWidth
-                            type='number'
-                        />
-                    </>
+                    <CreateFirst
+                        upperMargin={classes.upperMargin}
+                        testName={testName}
+                        setTestName={setTestName}
+                        testNumberOfQuestions={testNumberOfQuestions}
+                        setTestNumberOfQuestions={setTestNumberOfQuestions}
+                    />
                 );
             case 1:
                 return (
-                    <>
-                        <TextField
-                            className={classes.upperMargin}
-                            variant='outlined'
-                            label='Enter Qustion'
-                            fullWidth
-                        />
-                        <Paper>
-                            <TextField
-                                variant='filled'
-                                label='Enter Option'></TextField>
-                            <Checkbox size='large' />
-                        </Paper>
-                        <Paper>
-                            <TextField variant='filled' label='Enter Option' />
-                            <Checkbox size='large' />
-                        </Paper>
-                        <Paper>
-                            <TextField variant='filled' label='Enter Option' />
-                            <Checkbox size='large' />
-                        </Paper>
-                        <Paper>
-                            <TextField variant='filled' label='Enter Option' />
-                            <Checkbox size='large' />
-                        </Paper>
-                    </>
+                    <CreateSecond
+                        upperMargin={classes.upperMargin}
+                        testData={testData}
+                        setTestData={setTestData}
+                        testNumberOfQuestions={testNumberOfQuestions}
+                    />
                 );
             case 2:
                 return "This is the bit I really care about!";
