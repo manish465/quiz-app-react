@@ -102,6 +102,15 @@ const CreatePage = () => {
                         variant='contained'>
                         Next
                     </Button>
+                    <Button
+                        className={classes.upperMargin}
+                        onClick={() => console.log(testData)}
+                        disabled={activeStep !== 2}
+                        size='large'
+                        color='primary'
+                        variant='contained'>
+                        Submit
+                    </Button>
                 </ButtonGroup>
             </Paper>
         </div>
