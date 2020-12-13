@@ -8,16 +8,15 @@ import {
     Stepper,
     Step,
     StepLabel,
+    Divider,
 } from "@material-ui/core";
 
-import CreateFirst from "../Componets/FirstStep";
-import CreateSecond from "../Componets/SecondStep";
-import ThirdStep from "./../Componets/ThirdStep";
+import { FirstStep, SecondStep, ThirdStep } from "../Componets";
 
 const useStyles = makeStyles((theme) => ({
     createPageMaindiv: {
         width: "100%",
-        padding: "150px 100px",
+        padding: "100px 50px",
     },
     createPagePaper: {
         background: theme.palette.secondary.main,
@@ -26,29 +25,29 @@ const useStyles = makeStyles((theme) => ({
     upperMargin: { marginTop: "20px" },
 }));
 
+const questionFormat = {
+    text: "",
+    options: [
+        { text: "", isAnswer: false },
+        { text: "", isAnswer: false },
+        { text: "", isAnswer: false },
+        { text: "", isAnswer: false },
+    ],
+};
+
 const CreatePage = () => {
     const classes = useStyles();
 
     const [activeStep, setActiveStep] = useState(0);
 
     const [testName, setTestName] = useState("");
-    const [testData, setTestData] = useState([
-        {
-            text: "",
-            options: [
-                { text: "", isAnswer: false },
-                { text: "", isAnswer: false },
-                { text: "", isAnswer: false },
-                { text: "", isAnswer: false },
-            ],
-        },
-    ]);
+    const [testData, setTestData] = useState([questionFormat]);
 
     function getStepContent(step) {
         switch (step) {
             case 0:
                 return (
-                    <CreateFirst
+                    <FirstStep
                         upperMargin={classes.upperMargin}
                         testName={testName}
                         setTestName={setTestName}
@@ -56,7 +55,8 @@ const CreatePage = () => {
                 );
             case 1:
                 return (
-                    <CreateSecond
+                    <SecondStep
+                        questionFormat={questionFormat}
                         upperMargin={classes.upperMargin}
                         testData={testData}
                         setTestData={setTestData}
@@ -84,23 +84,21 @@ const CreatePage = () => {
             </Stepper>
             <Paper className={classes.createPagePaper}>
                 {getStepContent(activeStep)}
-                <ButtonGroup>
+                <Divider className={classes.upperMargin} />
+                <ButtonGroup
+                    className={classes.upperMargin}
+                    variant='contained'
+                    color='primary'
+                    size='large'
+                    fullWidth>
                     <Button
-                        className={classes.upperMargin}
                         onClick={() => setActiveStep(activeStep - 1)}
-                        disabled={activeStep === 0}
-                        size='large'
-                        color='primary'
-                        variant='contained'>
+                        disabled={activeStep === 0}>
                         Back
                     </Button>
                     <Button
-                        className={classes.upperMargin}
                         onClick={() => setActiveStep(activeStep + 1)}
-                        disabled={activeStep === 2}
-                        size='large'
-                        color='primary'
-                        variant='contained'>
+                        disabled={activeStep === 2}>
                         Next
                     </Button>
                 </ButtonGroup>

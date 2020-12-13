@@ -12,7 +12,7 @@ import {
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
 
-const SecondStep = ({ upperMargin, testData, setTestData }) => {
+const SecondStep = ({ upperMargin, testData, setTestData, questionFormat }) => {
     const handleChangeInput = (index, event) => {
         const values = [...testData];
         values[index][event.target.name] = event.target.value;
@@ -32,18 +32,7 @@ const SecondStep = ({ upperMargin, testData, setTestData }) => {
     };
 
     const handelAdd = () => {
-        setTestData([
-            ...testData,
-            {
-                text: "",
-                options: [
-                    { text: "", isAnswer: false },
-                    { text: "", isAnswer: false },
-                    { text: "", isAnswer: false },
-                    { text: "", isAnswer: false },
-                ],
-            },
-        ]);
+        setTestData([...testData, questionFormat]);
     };
 
     const handelRemove = (index) => {
@@ -67,15 +56,6 @@ const SecondStep = ({ upperMargin, testData, setTestData }) => {
                 />
                 {input.options.map((option, key) => (
                     <Container key={key} className={upperMargin}>
-                        <TextField
-                            name='text'
-                            variant='filled'
-                            label='Enter The Option'
-                            value={option.text}
-                            onChange={(event) =>
-                                handleOptionChangeInput(index, key, event)
-                            }
-                        />
                         <Tooltip title='Check The Correct Answer'>
                             <Checkbox
                                 color='primary'
@@ -86,6 +66,15 @@ const SecondStep = ({ upperMargin, testData, setTestData }) => {
                                 }
                             />
                         </Tooltip>
+                        <TextField
+                            name='text'
+                            variant='filled'
+                            label='Enter The Option'
+                            value={option.text}
+                            onChange={(event) =>
+                                handleOptionChangeInput(index, key, event)
+                            }
+                        />
                     </Container>
                 ))}
             </Grid>

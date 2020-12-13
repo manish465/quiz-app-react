@@ -10,7 +10,7 @@ import {
     OptionPage,
 } from "./Pages";
 
-import Header from "./Componets/Header";
+import { Header } from "./Componets";
 
 import { lightTheme, darkTheme } from "./Stylings/themes";
 

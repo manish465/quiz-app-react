@@ -1,11 +1,10 @@
 import React from "react";
 
-import HeaderMenu from "./HeaderMenu";
-import AppBarContent from "./AppBarContent";
-
 import { AppBar, Toolbar, makeStyles } from "@material-ui/core";
 
 import { AnimatePresence } from "framer-motion";
+
+import { HeaderMenu, AppBarContent } from "./";
 
 const useStyles = makeStyles((theme) => ({
     headerAppBar: {

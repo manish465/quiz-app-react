@@ -4,7 +4,7 @@ import { makeStyles, Grid, Typography } from "@material-ui/core";
 
 import { motion } from "framer-motion";
 
-import SvgBanner from "../Componets/SvgBanner";
+import { SvgBanner } from "../Componets";
 
 const useStyles = makeStyles((theme) => ({
     homePageMainGrid: {
