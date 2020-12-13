@@ -6,6 +6,7 @@
     "author": "manish465 <ms5978307@gmail.com>",
     "license": "MIT",
     "scripts": {
-        "start": "cd client && yarn start"
+        "client": "cd client && yarn start",
+        "server": "cd server && yarn start"
     }
 }
