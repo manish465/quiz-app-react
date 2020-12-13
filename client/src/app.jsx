@@ -23,6 +23,18 @@ const App = () => {
     const [userName, setUserName] = useState("");
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+    const routes = [
+        { to: "/", page: <HomePage /> },
+        {
+            to: "/login",
+            page: <LoginPage userName={userName} setUserName={setUserName} />,
+        },
+        { to: "/create-test", page: <CreatePage /> },
+        { to: "/join-test", page: <JoinPage /> },
+        { to: "/option", page: <OptionPage /> },
+        { to: "/about-us", page: <AboutUsPage /> },
+    ];
+
     return (
         <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
             <CssBaseline />
@@ -35,24 +47,11 @@ const App = () => {
                 setIsMenuOpen={setIsMenuOpen}
             />
             <Switch>
-                <Route exact path='/'>
-                    <HomePage />
-                </Route>
-                <Route exact path='/login'>
-                    <LoginPage userName={userName} setUserName={setUserName} />
-                </Route>
-                <Route exact path='/create-test'>
-                    <CreatePage />
-                </Route>
-                <Route exact path='/join-test'>
-                    <JoinPage />
-                </Route>
-                <Route exact path='/option'>
-                    <OptionPage />
-                </Route>
-                <Route exact path='/about-us'>
-                    <AboutUsPage />
-                </Route>
+                {routes.map((route, key) => (
+                    <Route key={key} exact path={route.to}>
+                        {route.page}
+                    </Route>
+                ))}
             </Switch>
         </ThemeProvider>
     );
