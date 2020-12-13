@@ -2,13 +2,7 @@ import React, { useState } from "react";
 
 import { TextField } from "@material-ui/core";
 
-const CreateFirst = ({
-    upperMargin,
-    testName,
-    setTestName,
-    testNumberOfQuestions,
-    setTestNumberOfQuestions,
-}) => {
+const CreateFirst = ({ upperMargin, testName, setTestName }) => {
     return (
         <>
             <TextField
@@ -18,17 +12,6 @@ const CreateFirst = ({
                 fullWidth
                 value={testName}
                 onChange={(event) => setTestName(event.target.value)}
-            />
-            <TextField
-                className={upperMargin}
-                variant='outlined'
-                label='Enter Numebr Of Questions'
-                fullWidth
-                type='number'
-                value={testNumberOfQuestions}
-                onChange={(event) =>
-                    setTestNumberOfQuestions(event.target.value)
-                }
             />
         </>
     );

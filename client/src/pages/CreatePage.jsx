@@ -31,8 +31,26 @@ const CreatePage = () => {
     const [activeStep, setActiveStep] = useState(0);
 
     const [testName, setTestName] = useState(null);
-    const [testNumberOfQuestions, setTestNumberOfQuestions] = useState(0);
-    const [testData, setTestData] = useState([]);
+    const [testData, setTestData] = useState([
+        {
+            text: "",
+            options: {
+                option1: { text: "", isAnswer: false },
+                option2: { text: "", isAnswer: false },
+                option3: { text: "", isAnswer: false },
+                option4: { text: "", isAnswer: false },
+            },
+        },
+        {
+            text: "",
+            options: {
+                option1: { text: "", isAnswer: false },
+                option2: { text: "", isAnswer: false },
+                option3: { text: "", isAnswer: false },
+                option4: { text: "", isAnswer: false },
+            },
+        },
+    ]);
 
     function getStepContent(step) {
         switch (step) {
@@ -42,8 +60,6 @@ const CreatePage = () => {
                         upperMargin={classes.upperMargin}
                         testName={testName}
                         setTestName={setTestName}
-                        testNumberOfQuestions={testNumberOfQuestions}
-                        setTestNumberOfQuestions={setTestNumberOfQuestions}
                     />
                 );
             case 1:
@@ -52,7 +68,6 @@ const CreatePage = () => {
                         upperMargin={classes.upperMargin}
                         testData={testData}
                         setTestData={setTestData}
-                        testNumberOfQuestions={testNumberOfQuestions}
                     />
                 );
             case 2:
