@@ -1,7 +1,20 @@
 import React from "react";
 
-const ThirdStep = () => {
-    return <>third</>;
+import { Button } from "@material-ui/core";
+
+const ThirdStep = ({ upperMargin, testData }) => {
+    return (
+        <>
+            <Button
+                className={upperMargin}
+                onClick={() => console.log(testData)}
+                size='large'
+                color='primary'
+                variant='contained'>
+                Publish
+            </Button>
+        </>
+    );
 };
 
 export default ThirdStep;

@@ -63,7 +63,12 @@ const CreatePage = () => {
                     />
                 );
             case 2:
-                return <ThirdStep />;
+                return (
+                    <ThirdStep
+                        upperMargin={classes.upperMargin}
+                        testData={testData}
+                    />
+                );
             default:
                 return "Unknown step";
         }
