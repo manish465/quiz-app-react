@@ -30,25 +30,16 @@ const CreatePage = () => {
 
     const [activeStep, setActiveStep] = useState(0);
 
-    const [testName, setTestName] = useState(null);
+    const [testName, setTestName] = useState("");
     const [testData, setTestData] = useState([
         {
             text: "",
-            options: {
-                option1: { text: "", isAnswer: false },
-                option2: { text: "", isAnswer: false },
-                option3: { text: "", isAnswer: false },
-                option4: { text: "", isAnswer: false },
-            },
-        },
-        {
-            text: "",
-            options: {
-                option1: { text: "", isAnswer: false },
-                option2: { text: "", isAnswer: false },
-                option3: { text: "", isAnswer: false },
-                option4: { text: "", isAnswer: false },
-            },
+            options: [
+                { text: "", isAnswer: false },
+                { text: "", isAnswer: false },
+                { text: "", isAnswer: false },
+                { text: "", isAnswer: false },
+            ],
         },
     ]);
 

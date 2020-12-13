@@ -11,8 +11,6 @@ import {
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
 
-const options = ["First", "Second", "Third", "Fourth"];
-
 const CreateSecond = ({ upperMargin, testData, setTestData }) => {
     const handleChangeInput = (index, event) => {
         const values = [...testData];
@@ -20,8 +18,35 @@ const CreateSecond = ({ upperMargin, testData, setTestData }) => {
         setTestData(values);
     };
 
+    const handleOptionChangeInput = (index, key, event) => {
+        const values = [...testData];
+        values[index]["options"][key][event.target.name] = event.target.value;
+        setTestData(values);
+    };
+
+    const handelAdd = () => {
+        setTestData([
+            ...testData,
+            {
+                text: "",
+                options: [
+                    { text: "", isAnswer: false },
+                    { text: "", isAnswer: false },
+                    { text: "", isAnswer: false },
+                    { text: "", isAnswer: false },
+                ],
+            },
+        ]);
+    };
+
+    const handelRemove = (index) => {
+        const values = [...testData];
+        values.splice(index, 1);
+        setTestData(values);
+    };
+
     return (
-        <form>
+        <>
             {testData.map((input, index) => (
                 <Grid key={index} container justify='space-between'>
                     <Grid item xs={10}>
@@ -37,54 +62,38 @@ const CreateSecond = ({ upperMargin, testData, setTestData }) => {
                                 handleChangeInput(index, event)
                             }
                         />
-                        <Container className={upperMargin}>
-                            <TextField
-                                type='text'
-                                variant='filled'
-                                label='Enter The First Option'
-                                value={input.options.option1.text}
-                            />
-                            <Checkbox value={input.options.option1.isAnswer} />
-                        </Container>
-                        <Container className={upperMargin}>
-                            <TextField
-                                type='text'
-                                variant='filled'
-                                label='Enter The Second Option'
-                                value={input.options.option2.text}
-                            />
-                            <Checkbox value={input.options.option2.isAnswer} />
-                        </Container>
-                        <Container className={upperMargin}>
-                            <TextField
-                                type='text'
-                                variant='filled'
-                                label='Enter The Third Option'
-                                value={input.options.option3.text}
-                            />
-                            <Checkbox value={input.options.option3.isAnswer} />
-                        </Container>
-                        <Container className={upperMargin}>
-                            <TextField
-                                type='text'
-                                variant='filled'
-                                label='Enter The Fourth Option'
-                                value={input.options.option4.text}
-                            />
-                            <Checkbox value={input.options.option4.isAnswer} />
-                        </Container>
+                        {input.options.map((option, key) => (
+                            <Container key={key} className={upperMargin}>
+                                <TextField
+                                    name='text'
+                                    variant='filled'
+                                    label='Enter The Option'
+                                    value={option.text}
+                                    onChange={(event) =>
+                                        handleOptionChangeInput(
+                                            index,
+                                            key,
+                                            event,
+                                        )
+                                    }
+                                />
+                                <Checkbox value={option.isAnswer} />
+                            </Container>
+                        ))}
                     </Grid>
                     <Grid item xs={2}>
-                        <IconButton>
+                        <IconButton
+                            onClick={() => handelRemove(index)}
+                            disabled={testData.length === 1}>
                             <RemoveIcon />
                         </IconButton>
-                        <IconButton>
+                        <IconButton onClick={handelAdd}>
                             <AddIcon />
                         </IconButton>
                     </Grid>
                 </Grid>
             ))}
-        </form>
+        </>
     );
 };
 
