@@ -6,12 +6,13 @@ import {
     Checkbox,
     Grid,
     IconButton,
+    Tooltip,
 } from "@material-ui/core";
 
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
 
-const CreateSecond = ({ upperMargin, testData, setTestData }) => {
+const SecondStep = ({ upperMargin, testData, setTestData }) => {
     const handleChangeInput = (index, event) => {
         const values = [...testData];
         values[index][event.target.name] = event.target.value;
@@ -75,14 +76,16 @@ const CreateSecond = ({ upperMargin, testData, setTestData }) => {
                                 handleOptionChangeInput(index, key, event)
                             }
                         />
-                        <Checkbox
-                            color='primary'
-                            name='isAnswer'
-                            checked={option.isAnswer}
-                            onChange={(event) =>
-                                handleOptionCheckInput(index, key, event)
-                            }
-                        />
+                        <Tooltip title='Check The Correct Answer'>
+                            <Checkbox
+                                color='primary'
+                                name='isAnswer'
+                                checked={option.isAnswer}
+                                onChange={(event) =>
+                                    handleOptionCheckInput(index, key, event)
+                                }
+                            />
+                        </Tooltip>
                     </Container>
                 ))}
             </Grid>
@@ -100,7 +103,7 @@ const CreateSecond = ({ upperMargin, testData, setTestData }) => {
     ));
 };
 
-export default CreateSecond;
+export default SecondStep;
 
 //{
 /* <>

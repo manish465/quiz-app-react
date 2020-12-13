@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { TextField } from "@material-ui/core";
 
-const CreateFirst = ({ upperMargin, testName, setTestName }) => {
+const FirstStep = ({ upperMargin, testName, setTestName }) => {
     return (
         <>
             <TextField
@@ -17,4 +17,4 @@ const CreateFirst = ({ upperMargin, testName, setTestName }) => {
     );
 };
 
-export default CreateFirst;
+export default FirstStep;
