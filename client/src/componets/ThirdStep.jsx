@@ -1,5 +1,7 @@
 import React from "react";
 
+import { generate } from "randomstring";
+
 import { Button, Typography, Paper, makeStyles } from "@material-ui/core";
 
 import CheckIcon from "@material-ui/icons/Check";
@@ -26,10 +28,21 @@ const useStyles = makeStyles((theme) => ({
 
 const ThirdStep = ({ upperMargin, testData, testName }) => {
     const classes = useStyles();
+
+    const finalData = {
+        name: testName,
+        question: testData,
+        testCode: generate(4),
+    };
+
+    const hadelPublish = () => {
+        console.log(finalData);
+    };
+
     return (
         <>
-            <Typography variant='h2'>{testName}:</Typography>
-            {testData.map((data, index) => (
+            <Typography variant='h2'>{finalData.name}:</Typography>
+            {finalData.question.map((data, index) => (
                 <Paper key={index} className={classes.thirdStepPaper}>
                     <Typography variant='h5'>
                         {index + 1}.{data.text}
@@ -53,7 +66,7 @@ const ThirdStep = ({ upperMargin, testData, testName }) => {
             ))}
             <Button
                 className={upperMargin}
-                onClick={() => console.log(testData)}
+                onClick={() => hadelPublish}
                 size='large'
                 color='primary'
                 variant='contained'>
