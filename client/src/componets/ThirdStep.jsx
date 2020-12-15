@@ -2,6 +2,9 @@ import React from "react";
 
 import { Button, Typography, Paper, makeStyles } from "@material-ui/core";
 
+import CheckIcon from "@material-ui/icons/Check";
+import CloseIcon from "@material-ui/icons/Close";
+
 const useStyles = makeStyles((theme) => ({
     thirdStepPaper: {
         marginTop: "50px",
@@ -15,6 +18,9 @@ const useStyles = makeStyles((theme) => ({
     },
     ThirdStepOption: {
         marginTop: "5px",
+    },
+    answer: {
+        marginLeft: "20px",
     },
 }));
 
@@ -35,6 +41,11 @@ const ThirdStep = ({ upperMargin, testData, testName }) => {
                                 className={classes.ThirdStepOption}
                                 variant='h6'>
                                 {key + 1}.{option.text}
+                                {option.isAnswer ? (
+                                    <CheckIcon className={classes.answer} />
+                                ) : (
+                                    <CloseIcon className={classes.answer} />
+                                )}
                             </Typography>
                         ))}
                     </Paper>

@@ -41,7 +41,17 @@ const CreatePage = () => {
     const [activeStep, setActiveStep] = useState(0);
 
     const [testName, setTestName] = useState("");
-    const [testData, setTestData] = useState([questionFormat]);
+    const [testData, setTestData] = useState([
+        {
+            text: "",
+            options: [
+                { text: "", isAnswer: false },
+                { text: "", isAnswer: false },
+                { text: "", isAnswer: false },
+                { text: "", isAnswer: false },
+            ],
+        },
+    ]);
 
     function getStepContent(step) {
         switch (step) {
