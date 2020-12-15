@@ -65,6 +65,7 @@ const CreatePage = () => {
             case 2:
                 return (
                     <ThirdStep
+                        testName={testName}
                         upperMargin={classes.upperMargin}
                         testData={testData}
                     />
