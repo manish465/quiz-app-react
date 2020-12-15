@@ -66,7 +66,7 @@ const ThirdStep = ({ upperMargin, testData, testName }) => {
             ))}
             <Button
                 className={upperMargin}
-                onClick={() => hadelPublish}
+                onClick={hadelPublish}
                 size='large'
                 color='primary'
                 variant='contained'>
