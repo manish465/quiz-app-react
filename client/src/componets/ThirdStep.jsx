@@ -34,7 +34,7 @@ const ThirdStep = ({ upperMargin, testData, testName }) => {
     const finalData = {
         name: testName,
         question: testData,
-        testCode: generate(4),
+        testCode: generate(6),
     };
 
     const hadelPublish = () => {

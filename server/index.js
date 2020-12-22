@@ -18,16 +18,13 @@ app.use(bodyParser.json());
 app.use(cors());
 
 const db = admin.database();
-const ref = db.ref("test");
-
-app.get("/", (req, res) => {});
-
-app.get("/api/tests", (req, res) => {
-    res.send(ref.get());
-});
+const testRef = db.ref("tests");
 
 app.post("/api/tests", (req, res) => {
-    ref.set(req.body);
+    const test = testRef.child(req.body.testCode);
+    test.push(req.body, (err) => {
+        err ? res.status(300) : res.status(200);
+    });
 });
 
 app.listen(port, () => console.log(`listening on port ${port}`));
