@@ -1,5 +1,7 @@
 import React from "react";
 
+import axios from "axios";
+
 import { generate } from "randomstring";
 
 import { Button, Typography, Paper, makeStyles } from "@material-ui/core";
@@ -36,7 +38,12 @@ const ThirdStep = ({ upperMargin, testData, testName }) => {
     };
 
     const hadelPublish = () => {
-        console.log(finalData);
+        axios
+            .post("http://localhost:8000/api/tests", finalData)
+            .then((response) => console.log(response.data, response.status))
+            .catch((error) => {
+                console.log(error);
+            });
     };
 
     return (

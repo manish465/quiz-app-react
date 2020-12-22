@@ -1,21 +1,33 @@
 const express = require("express");
 const app = express();
-const PORT = 8000;
+const cors = require("cors");
+const bodyParser = require("body-parser");
 
-var admin = require("firebase-admin");
+const port = process.env.PORT || 8000;
 
-var serviceAccount = require("./quize-app-b6d1f-firebase-adminsdk-4hljw-db9f4734b9.json");
+const admin = require("firebase-admin");
+
+const serviceAccount = require("./quize-app-b6d1f-firebase-adminsdk-4hljw-db9f4734b9.json");
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     databaseURL: "https://quize-app-b6d1f-default-rtdb.firebaseio.com",
 });
 
-var db = admin.database();
-var ref = db.ref("users");
+app.use(bodyParser.json());
+app.use(cors());
 
-ref.set({
-    id: 3,
+const db = admin.database();
+const ref = db.ref("test");
+
+app.get("/", (req, res) => {});
+
+app.get("/api/tests", (req, res) => {
+    res.send(ref.get());
 });
 
-app.listen(PORT, () => console.log(`listening on port ${PORT}`));
+app.post("/api/tests", (req, res) => {
+    ref.set(req.body);
+});
+
+app.listen(port, () => console.log(`listening on port ${port}`));
