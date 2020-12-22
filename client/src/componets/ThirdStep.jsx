@@ -4,10 +4,15 @@ import axios from "axios";
 
 import { generate } from "randomstring";
 
+import { useHistory } from "react-router-dom";
+
 import { Button, Typography, Paper, makeStyles } from "@material-ui/core";
 
 import CheckIcon from "@material-ui/icons/Check";
 import CloseIcon from "@material-ui/icons/Close";
+
+const URL = "http://localhost:8000";
+const Endpoint = "/api/tests";
 
 const useStyles = makeStyles((theme) => ({
     thirdStepPaper: {
@@ -29,6 +34,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ThirdStep = ({ upperMargin, testData, testName }) => {
+    const history = useHistory();
+
     const classes = useStyles();
 
     const finalData = {
@@ -39,7 +46,7 @@ const ThirdStep = ({ upperMargin, testData, testName }) => {
 
     const hadelPublish = () => {
         axios
-            .post("http://localhost:8000/api/tests", finalData)
+            .post(URL + Endpoint, finalData)
             .then((response) => console.log(response.data, response.status))
             .catch((error) => {
                 console.log(error);
@@ -49,6 +56,9 @@ const ThirdStep = ({ upperMargin, testData, testName }) => {
     return (
         <>
             <Typography variant='h2'>{finalData.name}:</Typography>
+            <Typography variant='h4'>
+                Test Code : {finalData.testCode}
+            </Typography>
             {finalData.question.map((data, index) => (
                 <Paper key={index} className={classes.thirdStepPaper}>
                     <Typography variant='h5'>

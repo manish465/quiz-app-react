@@ -21,10 +21,8 @@ const db = admin.database();
 const testRef = db.ref("tests");
 
 app.post("/api/tests", (req, res) => {
-    const test = testRef.child(req.body.testCode);
-    test.push(req.body, (err) => {
-        err ? res.status(300) : res.status(200);
-    });
+    const singleTest = testRef.child(req.body.testCode);
+    singleTest.set(req.body);
 });
 
 app.listen(port, () => console.log(`listening on port ${port}`));
