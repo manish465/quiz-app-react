@@ -31,6 +31,4 @@ app.post("/api/tests", (req, res) => {
     singleTest.set(req.body);
 });
 
-console.log(testRef.get());
-
 app.listen(port, () => console.log(`listening on port ${port}`));
