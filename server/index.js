@@ -20,9 +20,17 @@ app.use(cors());
 const db = admin.database();
 const testRef = db.ref("tests");
 
+app.get("/api/tests", (req, res) => {
+    testRef.once("value").then((snap) => {
+        res.send(snap.val());
+    });
+});
+
 app.post("/api/tests", (req, res) => {
     const singleTest = testRef.child(req.body.testCode);
     singleTest.set(req.body);
 });
+
+console.log(testRef.get());
 
 app.listen(port, () => console.log(`listening on port ${port}`));
