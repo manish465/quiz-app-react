@@ -37,15 +37,12 @@ const ThirdStep = ({ upperMargin, testData, testName, testCode }) => {
     const classes = useStyles();
 
     const hadelPublish = () => {
-        axios
-            .post(url + endpoint, {
-                testName,
-                testData,
-                testCode,
-            })
-            .then(function () {
-                console.log("nacsjncsak");
-            });
+        axios.post(url + endpoint, {
+            testName,
+            testData,
+            testCode,
+        });
+        history.goBack();
     };
 
     return (
