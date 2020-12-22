@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import { generate } from "randomstring";
+
 import {
     makeStyles,
     Button,
@@ -37,6 +39,8 @@ const questionFormat = {
 
 const CreatePage = () => {
     const classes = useStyles();
+
+    const testCode = generate(6);
 
     const [activeStep, setActiveStep] = useState(0);
 
@@ -78,6 +82,7 @@ const CreatePage = () => {
                         testName={testName}
                         upperMargin={classes.upperMargin}
                         testData={testData}
+                        testCode={testCode}
                     />
                 );
             default:

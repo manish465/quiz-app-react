@@ -2,8 +2,6 @@ import React from "react";
 
 import axios from "axios";
 
-import { generate } from "randomstring";
-
 import { useHistory } from "react-router-dom";
 
 import { Button, Typography, Paper, makeStyles } from "@material-ui/core";
@@ -11,8 +9,8 @@ import { Button, Typography, Paper, makeStyles } from "@material-ui/core";
 import CheckIcon from "@material-ui/icons/Check";
 import CloseIcon from "@material-ui/icons/Close";
 
-const URL = "http://localhost:8000";
-const Endpoint = "/api/tests";
+const url = "http://localhost:8000";
+const endpoint = "/api/tests";
 
 const useStyles = makeStyles((theme) => ({
     thirdStepPaper: {
@@ -33,33 +31,28 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const ThirdStep = ({ upperMargin, testData, testName }) => {
+const ThirdStep = ({ upperMargin, testData, testName, testCode }) => {
     const history = useHistory();
 
     const classes = useStyles();
 
-    const finalData = {
-        name: testName,
-        question: testData,
-        testCode: generate(6),
-    };
-
     const hadelPublish = () => {
         axios
-            .post(URL + Endpoint, finalData)
-            .then((response) => console.log(response.data, response.status))
-            .catch((error) => {
-                console.log(error);
+            .post(url + endpoint, {
+                testName,
+                testData,
+                testCode,
+            })
+            .then(function () {
+                console.log("nacsjncsak");
             });
     };
 
     return (
         <>
-            <Typography variant='h2'>{finalData.name}:</Typography>
-            <Typography variant='h4'>
-                Test Code : {finalData.testCode}
-            </Typography>
-            {finalData.question.map((data, index) => (
+            <Typography variant='h2'>{testName}:</Typography>
+            <Typography variant='h4'>Test Code : {testCode}</Typography>
+            {testData.map((data, index) => (
                 <Paper key={index} className={classes.thirdStepPaper}>
                     <Typography variant='h5'>
                         {index + 1}.{data.text}
