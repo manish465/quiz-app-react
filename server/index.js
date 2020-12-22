@@ -26,6 +26,19 @@ app.get("/api/tests", (req, res) => {
     });
 });
 
+app.get("/api/tests/:id", (req, res) => {
+    testRef
+        .orderByChild("testCode")
+        .equalTo(req.params.id)
+        .once("value", (snap) => {
+            if (snap.val()) {
+                res.send(snap.val());
+            } else {
+                res.send(null);
+            }
+        });
+});
+
 app.post("/api/tests", (req, res) => {
     const singleTest = testRef.child(req.body.testCode);
     singleTest.set(req.body);
