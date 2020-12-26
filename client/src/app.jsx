@@ -23,6 +23,8 @@ const App = () => {
     const [userName, setUserName] = useState("");
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+    const [testData, setTestData] = useState(null);
+
     const routes = [
         { to: "/", page: <HomePage /> },
         {
@@ -30,7 +32,10 @@ const App = () => {
             page: <LoginPage userName={userName} setUserName={setUserName} />,
         },
         { to: "/create-test", page: <CreatePage /> },
-        { to: "/join-test", page: <JoinPage /> },
+        {
+            to: "/join-test",
+            page: <JoinPage testData={testData} setTestData={setTestData} />,
+        },
         { to: "/option", page: <OptionPage /> },
         { to: "/about-us", page: <AboutUsPage /> },
     ];
