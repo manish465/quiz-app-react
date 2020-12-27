@@ -15,6 +15,8 @@ import {
 
 import { FirstStep, SecondStep, ThirdStep } from "../Componets";
 
+import format from "../Data/questionFormat";
+
 const useStyles = makeStyles((theme) => ({
     createPageMaindiv: {
         width: "100%",
@@ -26,16 +28,6 @@ const useStyles = makeStyles((theme) => ({
     },
     upperMargin: { marginTop: "20px" },
 }));
-
-const questionFormat = {
-    text: "",
-    options: [
-        { text: "", isAnswer: false },
-        { text: "", isAnswer: false },
-        { text: "", isAnswer: false },
-        { text: "", isAnswer: false },
-    ],
-};
 
 const CreatePage = () => {
     const classes = useStyles();
@@ -70,7 +62,7 @@ const CreatePage = () => {
             case 1:
                 return (
                     <SecondStep
-                        questionFormat={questionFormat}
+                        questionFormat={format}
                         upperMargin={classes.upperMargin}
                         testData={testData}
                         setTestData={setTestData}
