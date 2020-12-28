@@ -15,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
     mainPaper: {
         width: "100%",
         padding: "20px",
+        backgroundColor: theme.palette.secondary.main,
     },
     joinPageButton: {
         marginTop: "20px",

@@ -8,6 +8,7 @@ import {
     JoinPage,
     LoginPage,
     OptionPage,
+    AttemptPage,
 } from "./Pages";
 
 import { Header } from "./Componets";
@@ -38,6 +39,7 @@ const App = () => {
         },
         { to: "/option", page: <OptionPage /> },
         { to: "/about-us", page: <AboutUsPage /> },
+        { to: "/attempt/:id", page: <AttemptPage /> },
     ];
 
     return (
