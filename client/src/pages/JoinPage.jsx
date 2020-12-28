@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const JoinPage = ({ setTestData }) => {
+const JoinPage = () => {
     const classes = useStyles();
     const textfeildRef = useRef();
 
@@ -34,7 +34,6 @@ const JoinPage = ({ setTestData }) => {
             .get(url + endpoint + textfeildRef.current.value)
             .then((response) => {
                 if (response.data) {
-                    setTestData(response.data);
                     history.push(`/attempt/${textfeildRef.current.value}`);
                 } else {
                     alert("Error");

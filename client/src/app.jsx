@@ -24,8 +24,6 @@ const App = () => {
     const [userName, setUserName] = useState("");
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    const [testData, setTestData] = useState(null);
-
     const routes = [
         { to: "/", page: <HomePage /> },
         {
@@ -35,11 +33,14 @@ const App = () => {
         { to: "/create-test", page: <CreatePage /> },
         {
             to: "/join-test",
-            page: <JoinPage testData={testData} setTestData={setTestData} />,
+            page: <JoinPage />,
         },
         { to: "/option", page: <OptionPage /> },
         { to: "/about-us", page: <AboutUsPage /> },
-        { to: "/attempt/:id", page: <AttemptPage /> },
+        {
+            to: "/attempt/:id",
+            page: <AttemptPage />,
+        },
     ];
 
     return (
