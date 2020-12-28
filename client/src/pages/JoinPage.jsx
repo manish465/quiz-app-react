@@ -3,6 +3,7 @@ import React, { useRef } from "react";
 import { Paper, makeStyles, TextField, Button } from "@material-ui/core";
 
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const url = "http://localhost:8000";
 const endpoint = "/api/tests/";
@@ -26,10 +27,19 @@ const JoinPage = ({ setTestData }) => {
     const classes = useStyles();
     const textfeildRef = useRef();
 
+    const history = useHistory();
+
     const hadelJoin = () => {
         axios
             .get(url + endpoint + textfeildRef.current.value)
-            .then((response) => setTestData(response.data));
+            .then((response) => {
+                if (response.data) {
+                    setTestData(response.data);
+                    history.push(`/attempt/${textfeildRef.current.value}`);
+                } else {
+                    alert("Error");
+                }
+            });
     };
 
     return (
