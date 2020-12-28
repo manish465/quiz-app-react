@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
     mainPaper: {
         backgroundColor: theme.palette.secondary.main,
         padding: "30px 40px",
+        paddingTop: "5px",
         borderRadius: "20px",
         display: "flex",
         position: "relative",
