@@ -116,6 +116,7 @@ const AttemptPage = () => {
                             disabled={number + 1 === data.testData.length}>
                             Next
                         </Button>
+                        <Button>Submit And Leave</Button>
                     </ButtonGroup>
                 ) : (
                     "Loading..."
