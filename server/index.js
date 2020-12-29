@@ -62,6 +62,7 @@ app.get("/api/tests/:id", (req, res) => {
 app.post("/api/users", (req, res) => {
     const singleUser = userRef.child(req.body.id);
     singleUser.set(req.body);
+    res.send(req.body);
 });
 
 app.post("/api/tests", (req, res) => {

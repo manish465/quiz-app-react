@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 
 import { Grid, TextField, Button } from "@material-ui/core";
 
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { generate } from "randomstring";
 
 import axios from "axios";
@@ -11,6 +11,8 @@ const url = "http://localhost:8000";
 const endpoint = "/api/users";
 
 const SingUp = () => {
+    const history = useHistory();
+
     const firstName = useRef();
     const lastName = useRef();
     const email = useRef();
@@ -26,7 +28,11 @@ const SingUp = () => {
             password_1: password_1.current.value,
         };
 
-        axios.post(url + endpoint, account);
+        axios.post(url + endpoint, account).then((response) => {
+            if (response.data) {
+                history.push("/");
+            }
+        });
     };
 
     return (
