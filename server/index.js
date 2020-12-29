@@ -27,6 +27,19 @@ app.get("/api/users", (req, res) => {
     });
 });
 
+app.get("/api/users/:id", (req, res) => {
+    userRef
+        .orderByChild("id")
+        .equalTo(req.params.id)
+        .once("value", (snap) => {
+            if (snap.val()) {
+                res.send(snap.val());
+            } else {
+                res.send(null);
+            }
+        });
+});
+
 app.get("/api/tests", (req, res) => {
     testRef.once("value").then((snap) => {
         res.send(snap.val());
