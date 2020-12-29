@@ -26,21 +26,12 @@ const App = () => {
 
     const routes = [
         { to: "/", page: <HomePage /> },
-        {
-            to: "/acc",
-            page: <AccountPage />,
-        },
+        { to: "/acc", page: <AccountPage /> },
         { to: "/create-test", page: <CreatePage /> },
-        {
-            to: "/join-test",
-            page: <JoinPage />,
-        },
+        { to: "/join-test", page: <JoinPage /> },
         { to: "/option", page: <OptionPage /> },
         { to: "/about-us", page: <AboutUsPage /> },
-        {
-            to: "/attempt/:id",
-            page: <AttemptPage />,
-        },
+        { to: "/attempt/:id", page: <AttemptPage /> },
     ];
 
     return (
