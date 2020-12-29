@@ -14,14 +14,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Header = ({
-    userName,
-    setUserName,
-    isMenuOpen,
-    setIsMenuOpen,
-    darkMode,
-    setDarkMode,
-}) => {
+const Header = ({ isMenuOpen, setIsMenuOpen, darkMode, setDarkMode }) => {
     const classes = useStyles();
     return (
         <>
@@ -33,8 +26,6 @@ const Header = ({
             <AppBar className={classes.headerAppBar} position='absolute'>
                 <Toolbar>
                     <AppBarContent
-                        userName={userName}
-                        setUserName={setUserName}
                         isMenuOpen={isMenuOpen}
                         setIsMenuOpen={setIsMenuOpen}
                         darkMode={darkMode}

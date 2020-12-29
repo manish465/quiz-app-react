@@ -1,15 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 
-import { TextField, Button, makeStyles } from "@material-ui/core";
-
-import { motion } from "framer-motion";
+import {
+    TextField,
+    Button,
+    Paper,
+    Tabs,
+    Tab,
+    makeStyles,
+} from "@material-ui/core";
 
 import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
+    mainDiv: {
+        padding: "150px 200px",
+    },
     loginPagePaper: {
-        margin: "200px",
-        marginTop: "200px",
         padding: "30px",
         backgroundColor: theme.palette.secondary.main,
         borderRadius: "5px",
@@ -18,34 +24,47 @@ const useStyles = makeStyles((theme) => ({
     loginPageSaveButton: { marginTop: "10px" },
 }));
 
+const TabPanel = (props) => {
+    const { children, value, index } = props;
+
+    return <div hidden={value !== index}>{children}</div>;
+};
+
 const LoginPage = ({ userName, setUserName }) => {
     const classes = useStyles();
 
+    const [value, setValue] = useState(0);
+
     return (
-        <motion.div
-            initial={{ scale: 5, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            className={classes.loginPagePaper}>
-            <TextField
-                className={classes.loginTextFeid}
-                value={userName}
-                onChange={(event) => {
-                    setUserName(event.target.value);
-                }}
-                fullWidth
-                variant='outlined'
-                label='Enter Your User Name'
-            />
-            <Button
-                component={Link}
-                to='/'
-                className={classes.loginPageSaveButton}
-                color='primary'
-                fullWidth
-                variant='contained'>
-                SAVE
-            </Button>
-        </motion.div>
+        <div className={classes.mainDiv}>
+            <Tabs
+                value={value}
+                onChange={(event, newValue) => setValue(newValue)}>
+                <Tab label='Sign up' />
+                <Tab label='Login' />
+            </Tabs>
+            <TabPanel value={value} index={0}>
+                icjq
+            </TabPanel>
+            <TabPanel value={value} index={1}>
+                <Paper className={classes.loginPagePaper}>
+                    <TextField
+                        fullWidth
+                        variant='outlined'
+                        label='Enter Your User Name'
+                    />
+                    <Button
+                        component={Link}
+                        to='/'
+                        className={classes.loginPageSaveButton}
+                        color='primary'
+                        fullWidth
+                        variant='contained'>
+                        SAVE
+                    </Button>
+                </Paper>
+            </TabPanel>
+        </div>
     );
 };
 

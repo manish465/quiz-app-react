@@ -21,14 +21,14 @@ const App = () => {
     const randomTheme = Boolean(Math.round(Math.random()));
 
     const [darkMode, setDarkMode] = useState(randomTheme);
-    const [userName, setUserName] = useState("");
+
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const routes = [
         { to: "/", page: <HomePage /> },
         {
             to: "/login",
-            page: <LoginPage userName={userName} setUserName={setUserName} />,
+            page: <LoginPage />,
         },
         { to: "/create-test", page: <CreatePage /> },
         {
@@ -47,8 +47,6 @@ const App = () => {
         <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
             <CssBaseline />
             <Header
-                userName={userName}
-                setUserName={setUserName}
                 darkMode={darkMode}
                 setDarkMode={setDarkMode}
                 isMenuOpen={isMenuOpen}

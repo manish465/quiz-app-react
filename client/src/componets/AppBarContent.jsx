@@ -28,8 +28,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const AppBarContent = ({
-    userName,
-    setUserName,
     isMenuOpen,
     setIsMenuOpen,
     darkMode,
@@ -47,15 +45,9 @@ const AppBarContent = ({
                         component={Link}
                         to='/'
                         onClick={() => setIsMenuOpen(false)}>
-                        {userName === "" ? (
-                            <Typography variant='h4' color='secondary'>
-                                QUIZ APP
-                            </Typography>
-                        ) : (
-                            <Typography variant='h4' color='secondary'>
-                                Hello there, {userName}
-                            </Typography>
-                        )}
+                        <Typography variant='h4' color='secondary'>
+                            QUIZ APP
+                        </Typography>
                     </Button>
                 </motion.div>
             </Grid>
@@ -88,24 +80,13 @@ const AppBarContent = ({
                         {isMenuOpen ? <CloseIcon /> : <MenuIcon />}
                     </IconButton>
                 </motion.div>
-                {userName === "" ? (
-                    <Button
-                        component={Link}
-                        to='/login'
-                        color='secondary'
-                        variant='contained'>
-                        Login
-                    </Button>
-                ) : (
-                    <Button
-                        component={Link}
-                        to='/'
-                        onClick={() => setUserName("")}
-                        color='secondary'
-                        variant='contained'>
-                        Logout
-                    </Button>
-                )}
+                <Button
+                    component={Link}
+                    to='/login'
+                    color='secondary'
+                    variant='contained'>
+                    Login
+                </Button>
             </Grid>
         </Grid>
     );
