@@ -10,7 +10,7 @@ import {
     Grid,
 } from "@material-ui/core";
 
-import { Link } from "react-router-dom";
+import { Login, SingUp } from "../Componets";
 
 const useStyles = makeStyles((theme) => ({
     mainDiv: {
@@ -44,94 +44,12 @@ const AccountPage = ({ userName, setUserName }) => {
             </Tabs>
             <TabPanel value={value} index={0}>
                 <Paper className={classes.pagePaper}>
-                    <Grid container spacing={2}>
-                        <Grid item xs={6}>
-                            <TextField
-                                fullWidth
-                                name='firstName'
-                                variant='outlined'
-                                label='Enter Your First Name'
-                            />
-                        </Grid>
-                        <Grid item xs={6}>
-                            <TextField
-                                fullWidth
-                                name='lastName'
-                                variant='outlined'
-                                label='Enter Your Last Name'
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                fullWidth
-                                name='email'
-                                type='email'
-                                variant='outlined'
-                                label='Enter Your Email'
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                fullWidth
-                                name='password_1'
-                                type='password'
-                                variant='outlined'
-                                label='Create A Password'
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                fullWidth
-                                name='password_2'
-                                type='password'
-                                variant='outlined'
-                                label='Re-enter Your Password'
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <Button
-                                component={Link}
-                                to='/'
-                                color='primary'
-                                fullWidth
-                                variant='contained'>
-                                Sign up
-                            </Button>
-                        </Grid>
-                    </Grid>
+                    <SingUp />
                 </Paper>
             </TabPanel>
             <TabPanel value={value} index={1}>
                 <Paper className={classes.pagePaper}>
-                    <Grid container spacing={2}>
-                        <Grid item xs={6}>
-                            <TextField
-                                fullWidth
-                                name='userName'
-                                variant='outlined'
-                                label='Enter Your User Name'
-                            />
-                        </Grid>
-                        <Grid item xs={6}>
-                            <TextField
-                                fullWidth
-                                type='password'
-                                name='password'
-                                variant='outlined'
-                                label='Enter Your Password'
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <Button
-                                component={Link}
-                                to='/'
-                                color='primary'
-                                fullWidth
-                                variant='contained'>
-                                Login
-                            </Button>
-                        </Grid>
-                    </Grid>
+                    <Login />
                 </Paper>
             </TabPanel>
         </div>
