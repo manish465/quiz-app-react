@@ -32,7 +32,7 @@ const TabPanel = (props) => {
 const AccountPage = ({ userName, setUserName }) => {
     const classes = useStyles();
 
-    const [value, setValue] = useState(0);
+    const [value, setValue] = useState(1);
 
     return (
         <div className={classes.mainDiv}>
