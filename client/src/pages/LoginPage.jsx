@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     mainDiv: {
         padding: "150px 200px",
     },
-    loginPagePaper: {
+    pagePaper: {
         padding: "30px",
         backgroundColor: theme.palette.secondary.main,
         borderRadius: "5px",
@@ -47,7 +47,7 @@ const LoginPage = ({ userName, setUserName }) => {
                 icjq
             </TabPanel>
             <TabPanel value={value} index={1}>
-                <Paper className={classes.loginPagePaper}>
+                <Paper className={classes.pagePaper}>
                     <TextField
                         fullWidth
                         variant='outlined'
