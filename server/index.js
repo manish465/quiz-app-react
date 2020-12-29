@@ -21,6 +21,12 @@ const db = admin.database();
 const testRef = db.ref("tests");
 const userRef = db.ref("users");
 
+app.get("/api/users", (req, res) => {
+    userRef.once("value").then((snap) => {
+        res.send(snap.val());
+    });
+});
+
 app.get("/api/tests", (req, res) => {
     testRef.once("value").then((snap) => {
         res.send(snap.val());
