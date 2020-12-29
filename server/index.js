@@ -19,6 +19,7 @@ app.use(cors());
 
 const db = admin.database();
 const testRef = db.ref("tests");
+const userRef = db.ref("users");
 
 app.get("/api/tests", (req, res) => {
     testRef.once("value").then((snap) => {
@@ -37,6 +38,11 @@ app.get("/api/tests/:id", (req, res) => {
                 res.send(null);
             }
         });
+});
+
+app.post("/api/users", (req, res) => {
+    const singleUser = userRef.child(req.body.id);
+    singleUser.set(req.body);
 });
 
 app.post("/api/tests", (req, res) => {
