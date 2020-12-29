@@ -1,5 +1,5 @@
 import HomePage from "./HomePage";
-import LoginPage from "./LoginPage";
+import AccountPage from "./AccountPage";
 import CreatePage from "./CreatePage";
 import AboutUsPage from "./AboutUsPage";
 import JoinPage from "./JoinPage";
@@ -8,7 +8,7 @@ import AttemptPage from "./AttemptPage";
 
 export {
     HomePage,
-    LoginPage,
+    AccountPage,
     CreatePage,
     AboutUsPage,
     JoinPage,

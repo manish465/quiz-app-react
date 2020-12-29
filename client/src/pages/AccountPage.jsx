@@ -29,7 +29,7 @@ const TabPanel = (props) => {
     return <div hidden={value !== index}>{children}</div>;
 };
 
-const LoginPage = ({ userName, setUserName }) => {
+const AccountPage = ({ userName, setUserName }) => {
     const classes = useStyles();
 
     const [value, setValue] = useState(0);
@@ -138,4 +138,4 @@ const LoginPage = ({ userName, setUserName }) => {
     );
 };
 
-export default LoginPage;
+export default AccountPage;

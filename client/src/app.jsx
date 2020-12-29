@@ -6,7 +6,7 @@ import {
     CreatePage,
     HomePage,
     JoinPage,
-    LoginPage,
+    AccountPage,
     OptionPage,
     AttemptPage,
 } from "./Pages";
@@ -27,8 +27,8 @@ const App = () => {
     const routes = [
         { to: "/", page: <HomePage /> },
         {
-            to: "/login",
-            page: <LoginPage />,
+            to: "/acc",
+            page: <AccountPage />,
         },
         { to: "/create-test", page: <CreatePage /> },
         {

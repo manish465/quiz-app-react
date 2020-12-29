@@ -82,7 +82,7 @@ const AppBarContent = ({
                 </motion.div>
                 <Button
                     component={Link}
-                    to='/login'
+                    to='/acc'
                     color='secondary'
                     variant='contained'>
                     Login
