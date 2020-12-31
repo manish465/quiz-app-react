@@ -16,8 +16,7 @@ const SingUp = () => {
     const firstName = useRef();
     const lastName = useRef();
     const email = useRef();
-    const password_1 = useRef();
-    const password_2 = useRef();
+    const password = useRef();
 
     const hadelPublish = (event) => {
         const account = {
@@ -25,7 +24,7 @@ const SingUp = () => {
             firstName: firstName.current.value,
             lastName: lastName.current.value,
             email: email.current.value,
-            password_1: password_1.current.value,
+            password: password.current.value,
         };
 
         axios.post(url + endpoint, account).then((response) => {
@@ -68,21 +67,11 @@ const SingUp = () => {
             <Grid item xs={12}>
                 <TextField
                     fullWidth
-                    inputRef={password_1}
-                    name='password_1'
+                    inputRef={password}
+                    name='password'
                     type='password'
                     variant='outlined'
                     label='Create A Password'
-                />
-            </Grid>
-            <Grid item xs={12}>
-                <TextField
-                    fullWidth
-                    inputRef={password_2}
-                    name='password_2'
-                    type='password'
-                    variant='outlined'
-                    label='Re-enter Your Password'
                 />
             </Grid>
             <Grid item xs={12}>
