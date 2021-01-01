@@ -1,14 +1,6 @@
 import React, { useState } from "react";
 
-import {
-    TextField,
-    Button,
-    Paper,
-    Tabs,
-    Tab,
-    makeStyles,
-    Grid,
-} from "@material-ui/core";
+import { Paper, Tabs, Tab, makeStyles } from "@material-ui/core";
 
 import { Login, SingUp } from "../Componets";
 
@@ -22,6 +14,11 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: "5px",
     },
 }));
+
+const tabList = [
+    { index: 0, label: "Sign up", component: <SingUp /> },
+    { index: 1, label: "Login", component: <Login /> },
+];
 
 const TabPanel = (props) => {
     const { children, value, index } = props;
@@ -39,19 +36,15 @@ const AccountPage = ({ userName, setUserName }) => {
             <Tabs
                 value={value}
                 onChange={(event, newValue) => setValue(newValue)}>
-                <Tab label='Sign up' />
-                <Tab label='Login' />
+                {tabList.map((tab, index) => (
+                    <Tab key={index} label={tab.label} />
+                ))}
             </Tabs>
-            <TabPanel value={value} index={0}>
-                <Paper className={classes.pagePaper}>
-                    <SingUp />
-                </Paper>
-            </TabPanel>
-            <TabPanel value={value} index={1}>
-                <Paper className={classes.pagePaper}>
-                    <Login />
-                </Paper>
-            </TabPanel>
+            {tabList.map((tab, index) => (
+                <TabPanel key={index} value={value} index={tab.index}>
+                    <Paper className={classes.pagePaper}>{tab.component}</Paper>
+                </TabPanel>
+            ))}
         </div>
     );
 };
