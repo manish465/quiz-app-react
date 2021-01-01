@@ -13,6 +13,8 @@ import {
     Divider,
 } from "@material-ui/core";
 
+import { useFieldArray, useForm } from "react-hook-form";
+
 import { FirstStep, SecondStep, ThirdStep } from "../Componets";
 
 import format from "../Data/questionFormat";
