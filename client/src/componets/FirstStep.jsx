@@ -1,18 +1,30 @@
 import React from "react";
 
-import { TextField } from "@material-ui/core";
+import { TextField, Grid } from "@material-ui/core";
 
-const FirstStep = ({ upperMargin, testName, setTestName }) => {
+const FirstStep = ({ register }) => {
     return (
         <>
-            <TextField
-                className={upperMargin}
-                variant='outlined'
-                label='Enter Name Of The Test'
-                fullWidth
-                value={testName}
-                onChange={(event) => setTestName(event.target.value)}
-            />
+            <Grid item xs={12}>
+                <TextField
+                    fullWidth
+                    inputRef={register}
+                    variant='outlined'
+                    placeholder='Enter Test Name'
+                    label='Name'
+                    name={`name`}
+                />
+            </Grid>
+            <Grid item xs={12}>
+                <TextField
+                    fullWidth
+                    inputRef={register}
+                    variant='outlined'
+                    placeholder='Enter Test Description'
+                    label='Description'
+                    name={`description`}
+                />
+            </Grid>
         </>
     );
 };

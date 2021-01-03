@@ -5,17 +5,17 @@ import { generate } from "randomstring";
 import {
     makeStyles,
     Button,
-    ButtonGroup,
     Paper,
+    Divider,
+    Grid,
     Stepper,
     Step,
     StepLabel,
-    Divider,
 } from "@material-ui/core";
 
-import { FirstStep, SecondStep, ThirdStep } from "../Componets";
+import { useForm } from "react-hook-form";
 
-import format from "../Data/questionFormat";
+import { FirstStep, SecondStep, ThirdStep } from "../Componets";
 
 const useStyles = makeStyles((theme) => ({
     createPageMaindiv: {
@@ -26,95 +26,78 @@ const useStyles = makeStyles((theme) => ({
         background: theme.palette.secondary.main,
         padding: "20px",
     },
-    upperMargin: { marginTop: "20px" },
+    upperMargin: { marginTop: "20px", marginBottom: "20px" },
+    stepButton: {
+        margin: "0 5px",
+    },
 }));
 
 const CreatePage = () => {
     const classes = useStyles();
 
-    const testCode = generate(6);
-
     const [activeStep, setActiveStep] = useState(0);
 
-    const [testName, setTestName] = useState("");
-    const [testData, setTestData] = useState([
-        {
-            text: "",
-            options: [
-                { text: "", isAnswer: false },
-                { text: "", isAnswer: false },
-                { text: "", isAnswer: false },
-                { text: "", isAnswer: false },
-            ],
+    const { control, register, handleSubmit } = useForm({
+        defaultValues: {
+            testQuestion: ["jack"],
         },
-    ]);
+    });
 
-    function getStepContent(step) {
+    const getStepContent = (step) => {
         switch (step) {
             case 0:
-                return (
-                    <FirstStep
-                        upperMargin={classes.upperMargin}
-                        testName={testName}
-                        setTestName={setTestName}
-                    />
-                );
+                return <FirstStep register={register} />;
             case 1:
-                return (
-                    <SecondStep
-                        questionFormat={format}
-                        upperMargin={classes.upperMargin}
-                        testData={testData}
-                        setTestData={setTestData}
-                    />
-                );
+                return <SecondStep control={control} register={register} />;
             case 2:
-                return (
-                    <ThirdStep
-                        testName={testName}
-                        upperMargin={classes.upperMargin}
-                        testData={testData}
-                        testCode={testCode}
-                    />
-                );
+                return <ThirdStep handleSubmit={handleSubmit} />;
             default:
                 return "Unknown step";
         }
-    }
+    };
+
+    const onSubmit = (data) => console.log(data);
 
     return (
         <div className={classes.createPageMaindiv}>
             <Stepper activeStep={activeStep}>
                 <Step>
-                    <StepLabel>Hello</StepLabel>
+                    <StepLabel>1</StepLabel>
                 </Step>
                 <Step>
-                    <StepLabel>Hello</StepLabel>
+                    <StepLabel>2</StepLabel>
                 </Step>
                 <Step>
-                    <StepLabel>Hello</StepLabel>
+                    <StepLabel>3</StepLabel>
                 </Step>
             </Stepper>
             <Paper className={classes.createPagePaper}>
-                {getStepContent(activeStep)}
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <Grid container spacing={2}>
+                        {getStepContent(activeStep)}
+                    </Grid>
+                </form>
                 <Divider className={classes.upperMargin} />
-                <ButtonGroup
-                    className={classes.upperMargin}
-                    variant='contained'
+                <Button
+                    onClick={() =>
+                        setActiveStep((activeStep) => activeStep - 1)
+                    }
+                    disabled={activeStep === 0}
+                    className={classes.stepButton}
                     color='primary'
-                    size='large'
-                    fullWidth>
-                    <Button
-                        onClick={() => setActiveStep(activeStep - 1)}
-                        disabled={activeStep === 0}>
-                        Back
-                    </Button>
-                    <Button
-                        onClick={() => setActiveStep(activeStep + 1)}
-                        disabled={activeStep === 2}>
-                        Next
-                    </Button>
-                </ButtonGroup>
+                    variant='contained'>
+                    Back
+                </Button>
+                <Button
+                    onClick={() =>
+                        setActiveStep((activeStep) => activeStep + 1)
+                    }
+                    disabled={activeStep === 2}
+                    className={classes.stepButton}
+                    color='primary'
+                    variant='contained'>
+                    Next
+                </Button>
             </Paper>
         </div>
     );

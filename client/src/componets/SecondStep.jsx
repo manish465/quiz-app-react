@@ -2,94 +2,115 @@ import React from "react";
 
 import {
     TextField,
-    Container,
+    Button,
     Checkbox,
     Grid,
-    IconButton,
-    Tooltip,
+    ListItem,
+    List,
+    makeStyles,
 } from "@material-ui/core";
 
-import AddIcon from "@material-ui/icons/Add";
-import RemoveIcon from "@material-ui/icons/Remove";
+import { useFieldArray } from "react-hook-form";
 
-const SecondStep = ({ upperMargin, testData, setTestData, questionFormat }) => {
-    const handleChangeInput = (index, event) => {
-        const values = [...testData];
-        values[index][event.target.name] = event.target.value;
-        setTestData(values);
-    };
+const useStyles = makeStyles((theme) => ({
+    stepButton: {
+        margin: "0 5px",
+    },
+}));
 
-    const handleOptionChangeInput = (index, key, event) => {
-        const values = [...testData];
-        values[index]["options"][key][event.target.name] = event.target.value;
-        setTestData(values);
-    };
+const SecondStep = ({ control, register }) => {
+    const classes = useStyles();
 
-    const handleOptionCheckInput = (index, key, event) => {
-        const values = [...testData];
-        values[index]["options"][key][event.target.name] = event.target.checked;
-        setTestData(values);
-    };
+    const fieldArray = useFieldArray({ control, name: "testQuestion" });
 
-    const handelAdd = () => {
-        setTestData([...testData, questionFormat]);
-    };
-
-    const handelRemove = (index) => {
-        const values = [...testData];
-        values.splice(index, 1);
-        setTestData(values);
-    };
-
-    return testData.map((input, index) => (
-        <Grid key={index} container justify='space-between'>
-            <Grid item xs={10}>
+    const questionFormat = (field, index) => (
+        <React.Fragment key={field.id}>
+            <Grid item xs={12}>
                 <TextField
-                    name='text'
-                    className={upperMargin}
-                    type='text'
-                    variant='outlined'
-                    label='Enter The Question'
                     fullWidth
-                    value={input.text}
-                    onChange={(event) => handleChangeInput(index, event)}
+                    inputRef={register()}
+                    variant='outlined'
+                    placeholder='Enter The Question'
+                    label='Question'
+                    name={`testQuestion[${index}].text`}
                 />
-                {input.options.map((option, key) => (
-                    <Container key={key} className={upperMargin}>
-                        <Tooltip title='Check The Correct Answer'>
-                            <Checkbox
-                                color='primary'
-                                name='isAnswer'
-                                checked={option.isAnswer}
-                                onChange={(event) =>
-                                    handleOptionCheckInput(index, key, event)
-                                }
-                            />
-                        </Tooltip>
-                        <TextField
-                            name='text'
-                            variant='filled'
-                            label='Enter The Option'
-                            value={option.text}
-                            onChange={(event) =>
-                                handleOptionChangeInput(index, key, event)
-                            }
+            </Grid>
+            <Grid item xs={12}>
+                <List>
+                    <ListItem>
+                        <Checkbox
+                            inputRef={register()}
+                            name={`testQuestion[${index}].options[0].answer`}
                         />
-                    </Container>
-                ))}
+                        <TextField
+                            inputRef={register()}
+                            variant='outlined'
+                            placeholder='Enter Option'
+                            label='Option'
+                            name={`testQuestion[${index}].options[0].text`}
+                        />
+                    </ListItem>
+                    <ListItem>
+                        <Checkbox
+                            inputRef={register()}
+                            name={`testQuestion[${index}].options[1].answer`}
+                        />
+                        <TextField
+                            inputRef={register()}
+                            variant='outlined'
+                            placeholder='Enter Option'
+                            label='Option'
+                            name={`testQuestion[${index}].options[1].text`}
+                        />
+                    </ListItem>
+                    <ListItem>
+                        <Checkbox
+                            inputRef={register()}
+                            name={`testQuestion[${index}].options[2].answer`}
+                        />
+                        <TextField
+                            inputRef={register()}
+                            variant='outlined'
+                            placeholder='Enter Option'
+                            label='Option'
+                            name={`testQuestion[${index}].options[2].text`}
+                        />
+                    </ListItem>
+                    <ListItem>
+                        <Checkbox
+                            inputRef={register()}
+                            name={`testQuestion[${index}].options[3].answer`}
+                        />
+                        <TextField
+                            inputRef={register()}
+                            variant='outlined'
+                            placeholder='Enter Option'
+                            label='Option'
+                            name={`testQuestion[${index}].options[3].text`}
+                        />
+                    </ListItem>
+                </List>
+                <Button
+                    className={classes.stepButton}
+                    color='primary'
+                    variant='contained'
+                    onClick={fieldArray.append}>
+                    Add Question
+                </Button>
+                <Button
+                    className={classes.stepButton}
+                    color='primary'
+                    variant='contained'
+                    onClick={() => fieldArray.remove(index)}>
+                    Remove Aboved Question
+                </Button>
             </Grid>
-            <Grid item xs={2}>
-                <IconButton
-                    onClick={() => handelRemove(index)}
-                    disabled={testData.length === 1}>
-                    <RemoveIcon />
-                </IconButton>
-                <IconButton onClick={handelAdd}>
-                    <AddIcon />
-                </IconButton>
-            </Grid>
-        </Grid>
-    ));
+        </React.Fragment>
+    );
+
+    return fieldArray.fields.map((field, index) =>
+        questionFormat(field, index),
+    );
 };
 
 export default SecondStep;
