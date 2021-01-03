@@ -39,11 +39,11 @@ const SecondStep = ({ control, register }) => {
                 <List>
                     <ListItem>
                         <Checkbox
-                            inputRef={register()}
+                            inputRef={register}
                             name={`testQuestion[${index}].options[0].answer`}
                         />
                         <TextField
-                            inputRef={register()}
+                            inputRef={register}
                             variant='outlined'
                             placeholder='Enter Option'
                             label='Option'
@@ -52,11 +52,11 @@ const SecondStep = ({ control, register }) => {
                     </ListItem>
                     <ListItem>
                         <Checkbox
-                            inputRef={register()}
+                            inputRef={register}
                             name={`testQuestion[${index}].options[1].answer`}
                         />
                         <TextField
-                            inputRef={register()}
+                            inputRef={register}
                             variant='outlined'
                             placeholder='Enter Option'
                             label='Option'
@@ -65,11 +65,11 @@ const SecondStep = ({ control, register }) => {
                     </ListItem>
                     <ListItem>
                         <Checkbox
-                            inputRef={register()}
+                            inputRef={register}
                             name={`testQuestion[${index}].options[2].answer`}
                         />
                         <TextField
-                            inputRef={register()}
+                            inputRef={register}
                             variant='outlined'
                             placeholder='Enter Option'
                             label='Option'
@@ -78,11 +78,11 @@ const SecondStep = ({ control, register }) => {
                     </ListItem>
                     <ListItem>
                         <Checkbox
-                            inputRef={register()}
+                            inputRef={register}
                             name={`testQuestion[${index}].options[3].answer`}
                         />
                         <TextField
-                            inputRef={register()}
+                            inputRef={register}
                             variant='outlined'
                             placeholder='Enter Option'
                             label='Option'

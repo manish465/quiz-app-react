@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 
-import { generate } from "randomstring";
-
 import {
     makeStyles,
     Button,
@@ -39,7 +37,19 @@ const CreatePage = () => {
 
     const { control, register, handleSubmit } = useForm({
         defaultValues: {
-            testQuestion: ["jack"],
+            name: "",
+            description: "",
+            testQuestion: [
+                {
+                    text: "",
+                    options: [
+                        { text: "", answer: false },
+                        { text: "", answer: false },
+                        { text: "", answer: false },
+                        { text: "", answer: false },
+                    ],
+                },
+            ],
         },
     });
 
@@ -56,8 +66,6 @@ const CreatePage = () => {
         }
     };
 
-    const onSubmit = (data) => console.log(data);
-
     return (
         <div className={classes.createPageMaindiv}>
             <Stepper activeStep={activeStep}>
@@ -72,7 +80,7 @@ const CreatePage = () => {
                 </Step>
             </Stepper>
             <Paper className={classes.createPagePaper}>
-                <form onSubmit={handleSubmit(onSubmit)}>
+                <form onSubmit={handleSubmit((data) => console.log(data))}>
                     <Grid container spacing={2}>
                         {getStepContent(activeStep)}
                     </Grid>
