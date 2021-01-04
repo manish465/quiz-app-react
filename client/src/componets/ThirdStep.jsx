@@ -22,18 +22,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ThirdStep = ({ hadelPublish }) => {
-    return (
-        <>
-            <Button
-                onClick={hadelPublish}
-                size='large'
-                type='submit'
-                color='primary'
-                variant='contained'>
-                Publish
-            </Button>
-        </>
-    );
+    return <></>;
 };
 
 export default ThirdStep;
