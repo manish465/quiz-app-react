@@ -9,7 +9,10 @@ import {
     List,
     ListItem,
     Checkbox,
+    FormControlLabel,
 } from "@material-ui/core";
+
+import axios from "axios";
 
 import { useForm, useFieldArray } from "react-hook-form";
 
@@ -28,13 +31,16 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+const url = "http://localhost:8000";
+const endpoint = "/api/tests";
+
 const CreatePage = () => {
     const classes = useStyles();
 
-    const { control, register, handleSubmit } = useForm({
+    const { control, register, handleSubmit, watch } = useForm({
         defaultValues: {
             name: "",
-            description: "",
+            description: { include: false, text: "" },
             testQuestion: [
                 {
                     text: "",
@@ -55,11 +61,17 @@ const CreatePage = () => {
         name: "testQuestion",
     });
 
+    const includeDescpriton = watch(`description.include`);
+
     return (
         <div className={classes.createPageMaindiv}>
             <Paper className={classes.createPagePaper}>
                 <form
-                    onSubmit={handleSubmit((data) => console.log(data))}
+                    onSubmit={handleSubmit((data) =>
+                        axios
+                            .post(url + endpoint, data)
+                            .then((response) => console.log(response)),
+                    )}
                     noValidate>
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
@@ -73,15 +85,30 @@ const CreatePage = () => {
                             />
                         </Grid>
                         <Grid item xs={12}>
-                            <TextField
-                                inputRef={register()}
-                                fullWidth
-                                variant='outlined'
-                                placeholder='Enter Test Description'
-                                label='Description'
-                                name='description'
+                            <FormControlLabel
+                                control={
+                                    <Checkbox
+                                        inputRef={register}
+                                        color='primary'
+                                        defaultValue={false}
+                                        name={`description.include`}
+                                    />
+                                }
+                                label='Include Description'
                             />
                         </Grid>
+                        {includeDescpriton && (
+                            <Grid item xs={12}>
+                                <TextField
+                                    inputRef={register()}
+                                    fullWidth
+                                    variant='outlined'
+                                    placeholder='Enter Test Description'
+                                    label='Description'
+                                    name={`description.text`}
+                                />
+                            </Grid>
+                        )}
                         {fields.map((field, index) => (
                             <React.Fragment key={field.id}>
                                 <Grid item xs={12}>

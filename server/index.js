@@ -68,6 +68,7 @@ app.post("/api/users", (req, res) => {
 app.post("/api/tests", (req, res) => {
     const singleTest = testRef.child(req.body.testCode);
     singleTest.set(req.body);
+    res.send(req.body);
 });
 
 app.listen(port, () => console.log(`listening on port ${port}`));
