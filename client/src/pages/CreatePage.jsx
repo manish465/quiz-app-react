@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
         background: theme.palette.secondary.main,
         padding: "20px",
     },
-    upperMargin: { marginTop: "20px", marginBottom: "20px" },
+    upperMargin: { margin: "20px 0" },
     stepButton: {
         margin: "0 5px",
     },
@@ -47,6 +47,7 @@ const CreatePage = () => {
                 },
             ],
         },
+        mode: "onBlur",
     });
 
     const { fields, append, remove } = useFieldArray({
@@ -57,11 +58,13 @@ const CreatePage = () => {
     return (
         <div className={classes.createPageMaindiv}>
             <Paper className={classes.createPagePaper}>
-                <form onSubmit={handleSubmit((data) => console.log(data))}>
+                <form
+                    onSubmit={handleSubmit((data) => console.log(data))}
+                    noValidate>
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <TextField
-                                inputRef={register}
+                                inputRef={register({ required: true })}
                                 fullWidth
                                 variant='outlined'
                                 placeholder='Enter Test Name'
@@ -71,7 +74,7 @@ const CreatePage = () => {
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
-                                inputRef={register}
+                                inputRef={register()}
                                 fullWidth
                                 variant='outlined'
                                 placeholder='Enter Test Description'
@@ -84,7 +87,7 @@ const CreatePage = () => {
                                 <Grid item xs={12}>
                                     <TextField
                                         fullWidth
-                                        inputRef={register}
+                                        inputRef={register()}
                                         variant='outlined'
                                         placeholder='Enter The Question'
                                         label='Question'
@@ -95,11 +98,13 @@ const CreatePage = () => {
                                     <List>
                                         <ListItem>
                                             <Checkbox
-                                                inputRef={register}
+                                                inputRef={register()}
                                                 name={`testQuestion[${index}].options[0].answer`}
+                                                color='primary'
+                                                defaultValue={false}
                                             />
                                             <TextField
-                                                inputRef={register}
+                                                inputRef={register()}
                                                 variant='outlined'
                                                 placeholder='Enter Option'
                                                 label='Option'
@@ -108,11 +113,13 @@ const CreatePage = () => {
                                         </ListItem>
                                         <ListItem>
                                             <Checkbox
-                                                inputRef={register}
+                                                inputRef={register()}
                                                 name={`testQuestion[${index}].options[1].answer`}
+                                                color='primary'
+                                                defaultValue={false}
                                             />
                                             <TextField
-                                                inputRef={register}
+                                                inputRef={register()}
                                                 variant='outlined'
                                                 placeholder='Enter Option'
                                                 label='Option'
@@ -121,11 +128,13 @@ const CreatePage = () => {
                                         </ListItem>
                                         <ListItem>
                                             <Checkbox
-                                                inputRef={register}
+                                                inputRef={register()}
                                                 name={`testQuestion[${index}].options[2].answer`}
+                                                color='primary'
+                                                defaultValue={false}
                                             />
                                             <TextField
-                                                inputRef={register}
+                                                inputRef={register()}
                                                 variant='outlined'
                                                 placeholder='Enter Option'
                                                 label='Option'
@@ -134,11 +143,13 @@ const CreatePage = () => {
                                         </ListItem>
                                         <ListItem>
                                             <Checkbox
-                                                inputRef={register}
+                                                inputRef={register()}
                                                 name={`testQuestion[${index}].options[3].answer`}
+                                                color='primary'
+                                                defaultValue={false}
                                             />
                                             <TextField
-                                                inputRef={register}
+                                                inputRef={register()}
                                                 variant='outlined'
                                                 placeholder='Enter Option'
                                                 label='Option'
