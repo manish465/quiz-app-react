@@ -21,6 +21,8 @@ import { useHistory } from "react-router-dom";
 import { generate } from "randomstring";
 
 import { useForm, useFieldArray } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
 const useStyles = makeStyles((theme) => ({
     createPageMaindiv: {
@@ -51,7 +53,7 @@ const CreatePage = () => {
 
     const testCode = generate(6);
 
-    const { control, register, handleSubmit, watch } = useForm({
+    const { control, register, handleSubmit, watch, errors } = useForm({
         defaultValues: {
             name: "",
             password: "",
@@ -69,6 +71,12 @@ const CreatePage = () => {
             ],
         },
         mode: "onBlur",
+        resolver: yupResolver(
+            yup.object().shape({
+                name: yup.string().required(),
+                password: yup.string().required(),
+            }),
+        ),
     });
 
     const { fields, append, remove } = useFieldArray({
@@ -120,7 +128,8 @@ const CreatePage = () => {
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <TextField
-                                inputRef={register({ required: true })}
+                                error={errors.name?.message}
+                                inputRef={register()}
                                 fullWidth
                                 variant='outlined'
                                 placeholder='Enter Test Name'
@@ -130,7 +139,8 @@ const CreatePage = () => {
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
-                                inputRef={register({ required: true })}
+                                error={errors.password?.message}
+                                inputRef={register()}
                                 fullWidth
                                 variant='outlined'
                                 placeholder='Enter Test Password'
@@ -143,7 +153,7 @@ const CreatePage = () => {
                             <FormControlLabel
                                 control={
                                     <Checkbox
-                                        inputRef={register}
+                                        inputRef={register()}
                                         color='primary'
                                         defaultValue={false}
                                         name={`description.include`}
