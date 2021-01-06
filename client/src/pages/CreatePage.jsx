@@ -54,6 +54,7 @@ const CreatePage = () => {
     const { control, register, handleSubmit, watch } = useForm({
         defaultValues: {
             name: "",
+            password: "",
             description: { include: false, text: "" },
             testQuestion: [
                 {
@@ -82,6 +83,7 @@ const CreatePage = () => {
             .post(url + endpoint, {
                 testCode: testCode,
                 testName: data.name,
+                testPassword: data.password,
                 testDescription: data.description,
                 testData: data.testQuestion,
             })
@@ -124,6 +126,17 @@ const CreatePage = () => {
                                 placeholder='Enter Test Name'
                                 label='Name'
                                 name='name'
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                inputRef={register({ required: true })}
+                                fullWidth
+                                variant='outlined'
+                                placeholder='Enter Test Password'
+                                type='password'
+                                label='Password'
+                                name='password'
                             />
                         </Grid>
                         <Grid item xs={12}>
