@@ -50,7 +50,6 @@ const JoinPage = () => {
                     variant='outlined'
                     fullWidth
                 />
-
                 <Button
                     onClick={hadelJoin}
                     className={classes.joinPageButton}

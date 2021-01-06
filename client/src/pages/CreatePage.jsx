@@ -48,8 +48,7 @@ const CreatePage = () => {
     const history = useHistory();
 
     const [openModal, setOpenModal] = useState(false);
-
-    const testCode = generate(6);
+    const [data, setData] = useState(null);
 
     const { control, register, handleSubmit, watch } = useForm({
         defaultValues: {
@@ -81,13 +80,18 @@ const CreatePage = () => {
     const onSubmit = (data) => {
         axios
             .post(url + endpoint, {
-                testCode: testCode,
+                testCode: generate(6),
                 testName: data.name,
                 testPassword: data.password,
                 testDescription: data.description,
                 testData: data.testQuestion,
             })
-            .then((response) => (response.data ? setOpenModal(true) : null));
+            .then((response) => {
+                if (response.data) {
+                    setOpenModal(true);
+                    setData(response.data);
+                }
+            });
     };
 
     return (
@@ -103,7 +107,9 @@ const CreatePage = () => {
                     component={Box}
                     p={2}
                     m={15}>
-                    <Typography variant='h5'>TestCode : {testCode}</Typography>
+                    <Typography variant='h5'>
+                        TestCode : {data ? data.testCode : "Loading..."}
+                    </Typography>
                     <Button
                         onClick={() => {
                             setOpenModal(false);
