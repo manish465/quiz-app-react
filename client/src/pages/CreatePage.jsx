@@ -14,6 +14,8 @@ import {
 
 import axios from "axios";
 
+import { generate } from "randomstring";
+
 import { useForm, useFieldArray } from "react-hook-form";
 
 const useStyles = makeStyles((theme) => ({
@@ -63,16 +65,21 @@ const CreatePage = () => {
 
     const includeDescpriton = watch(`description.include`);
 
+    const onSubmit = (data) => {
+        axios
+            .post(url + endpoint, {
+                testCode: generate(6),
+                testName: data.name,
+                testDescription: data.description,
+                testData: data.testQuestion,
+            })
+            .then((response) => console.log(response));
+    };
+
     return (
         <div className={classes.createPageMaindiv}>
             <Paper className={classes.createPagePaper}>
-                <form
-                    onSubmit={handleSubmit((data) =>
-                        axios
-                            .post(url + endpoint, data)
-                            .then((response) => console.log(response)),
-                    )}
-                    noValidate>
+                <form onSubmit={handleSubmit(onSubmit)} noValidate>
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <TextField
