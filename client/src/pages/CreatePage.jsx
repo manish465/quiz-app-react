@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import {
     makeStyles,
@@ -10,9 +10,13 @@ import {
     ListItem,
     Checkbox,
     FormControlLabel,
+    Modal,
+    Box,
+    Typography,
 } from "@material-ui/core";
 
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 import { generate } from "randomstring";
 
@@ -27,6 +31,9 @@ const useStyles = makeStyles((theme) => ({
         background: theme.palette.secondary.main,
         padding: "20px",
     },
+    modalPaper: {
+        background: theme.palette.secondary.main,
+    },
     upperMargin: { margin: "20px 0" },
     stepButton: {
         margin: "0 5px",
@@ -38,6 +45,11 @@ const endpoint = "/api/tests";
 
 const CreatePage = () => {
     const classes = useStyles();
+    const history = useHistory();
+
+    const [openModal, setOpenModal] = useState(false);
+
+    const testCode = generate(6);
 
     const { control, register, handleSubmit, watch } = useForm({
         defaultValues: {
@@ -68,16 +80,39 @@ const CreatePage = () => {
     const onSubmit = (data) => {
         axios
             .post(url + endpoint, {
-                testCode: generate(6),
+                testCode: testCode,
                 testName: data.name,
                 testDescription: data.description,
                 testData: data.testQuestion,
             })
-            .then((response) => console.log(response));
+            .then((response) => (response.data ? setOpenModal(true) : null));
     };
 
     return (
         <div className={classes.createPageMaindiv}>
+            <Modal
+                open={openModal}
+                onClose={() => {
+                    setOpenModal(false);
+                    history.push("/");
+                }}>
+                <Paper
+                    className={classes.modalPaper}
+                    component={Box}
+                    p={2}
+                    m={15}>
+                    <Typography variant='h5'>TestCode : {testCode}</Typography>
+                    <Button
+                        onClick={() => {
+                            setOpenModal(false);
+                            history.push("/");
+                        }}
+                        variant='contained'
+                        color='primary'>
+                        Close
+                    </Button>
+                </Paper>
+            </Modal>
             <Paper className={classes.createPagePaper}>
                 <form onSubmit={handleSubmit(onSubmit)} noValidate>
                     <Grid container spacing={2}>
