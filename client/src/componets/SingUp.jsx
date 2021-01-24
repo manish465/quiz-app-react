@@ -3,14 +3,13 @@ import React from "react";
 import { Grid, TextField, Button } from "@material-ui/core";
 
 import { useHistory } from "react-router-dom";
-import { generate } from "randomstring";
 
 import { useForm } from "react-hook-form";
 
 import axios from "axios";
 
 const url = "http://localhost:8000";
-const endpoint = "/api/users";
+const endpoint = "/api/users/register";
 
 const SingUp = () => {
     const history = useHistory();
@@ -19,7 +18,6 @@ const SingUp = () => {
 
     const onSubmit = (data) => {
         const account = {
-            id: generate(8),
             firstName: data.firstName,
             lastName: data.lastName,
             email: data.email,
@@ -28,6 +26,7 @@ const SingUp = () => {
 
         axios.post(url + endpoint, account).then((response) => {
             if (response.data) {
+                console.log(response.data);
                 history.push("/");
             }
         });

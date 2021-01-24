@@ -1,74 +1,19 @@
 const express = require("express");
 const app = express();
+const mongoose = require("mongoose");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 
-const port = process.env.PORT || 8000;
+const url = "mongodb://localhost:27017/testappdb";
 
-const admin = require("firebase-admin");
+const authRoute = require("./routes/Auth");
 
-const serviceAccount = require("./quize-app-b6d1f-firebase-adminsdk-4hljw-db9f4734b9.json");
-
-admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-    databaseURL: "https://quize-app-b6d1f-default-rtdb.firebaseio.com",
-});
+mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
 
 app.use(bodyParser.json());
 app.use(cors());
 
-const db = admin.database();
-const testRef = db.ref("tests");
-const userRef = db.ref("users");
+app.use("/api/users", authRoute);
 
-app.get("/api/users", (req, res) => {
-    userRef.once("value").then((snap) => {
-        res.send(snap.val());
-    });
-});
-
-app.get("/api/users/:id", (req, res) => {
-    userRef
-        .orderByChild("id")
-        .equalTo(req.params.id)
-        .once("value", (snap) => {
-            if (snap.val()) {
-                res.send(snap.val());
-            } else {
-                res.send(null);
-            }
-        });
-});
-
-app.get("/api/tests", (req, res) => {
-    testRef.once("value").then((snap) => {
-        res.send(snap.val());
-    });
-});
-
-app.get("/api/tests/:id", (req, res) => {
-    testRef
-        .orderByChild("testCode")
-        .equalTo(req.params.id)
-        .once("value", (snap) => {
-            if (snap.val()) {
-                res.send(snap.val());
-            } else {
-                res.send(null);
-            }
-        });
-});
-
-app.post("/api/users", (req, res) => {
-    const singleUser = userRef.child(req.body.id);
-    singleUser.set(req.body);
-    res.send(req.body);
-});
-
-app.post("/api/tests", (req, res) => {
-    const singleTest = testRef.child(req.body.testCode);
-    singleTest.set(req.body);
-    res.send(req.body);
-});
-
-app.listen(port, () => console.log(`listening on port ${port}`));
+mongoose.connection.on("open", () => console.log("connected to DB"));
+app.listen(8000, () => console.log("server is up and running "));
